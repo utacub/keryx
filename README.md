@@ -13,11 +13,13 @@ Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior min
 ## Canvis de la versió 0.6.5
 
 - **Sense finestra de primera vegada.** La finestra «Comencem amb Keryx» ja no s’obre en entrar per primer cop: Keryx comença directament a la pantalla principal, en català, amb accés directe (tacte, ratolí o teclat). La llengua es canvia amb el botó de la capçalera, i l’accés i la veu, a Ajustos (decisió de Marc, 7 de novembre de 2026).
+- **Versió al costat del logo.** El número de versió apareix en petit a la dreta del logo, a la capçalera. La caixa del logo s’ajusta ara al dibuix, i als mòbils de 400 px o menys el logo i els espais de la capçalera s’estrenyen una mica perquè tot hi càpiga fins a 320 px.
+- **Botons de la capçalera.** «Instal·lar» mostra només la icona, amb la mida dels altres botons d’icona; el text queda com a nom accessible. «Informació» té ara aspecte de botó, com «Ajustos» (decisions de Marc, 7 de novembre de 2026).
 - `sw.js` passa a `keryx-0.6.5`.
 
 La 0.6.5 s’obté aplicant `tools/patch-0.6.5/patch065.py` sobre l’HTML de la 0.6.4 (commit `9cfeff4`).
 
-Validació (7 de novembre de 2026), Chromium amb Playwright i un navegador sense dades: a 1280×800 i 390×844 no s’obre cap finestra ni en la primera visita ni en recarregar, i no hi ha errors de JavaScript.
+Validació (7 de novembre de 2026), Chromium amb Playwright i un navegador sense dades: a 1280×800 i 390×844 no s’obre cap finestra ni en la primera visita ni en recarregar, i no hi ha errors de JavaScript. La capçalera no es desborda a 320, 340, 360, 390, 768 i 1280 px d’amplada, ni a 740×360, i tots els botons queden dins la pantalla.
 
 ## Canvis de la versió 0.6.4
 

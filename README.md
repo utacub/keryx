@@ -1,14 +1,26 @@
-# UTAC Keryx 0.6.5
+# UTAC Keryx 0.6.6
 
-Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.5_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
+Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.6_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
 
 ## Aplicació web i fitxer local
 
 - Aplicació: https://utacub.github.io/keryx/
-- Edició descarregable: [`UTAC_Keryx_v0.6.5_local.html`](UTAC_Keryx_v0.6.5_local.html).
+- Edició descarregable: [`UTAC_Keryx_v0.6.6_local.html`](UTAC_Keryx_v0.6.6_local.html).
 - La web i l’HTML descarregable contenen la mateixa aplicació. Les dades de cada navegador i origen són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel. `index.html` és autònom; `.nojekyll` evita el processament Jekyll.
 - Per publicar una modificació: executeu `python3 build.py`, les proves indicades més avall i incorporeu els fitxers resultants a `main`. La construcció actualitza `index.html`, l’HTML descarregable i la previsualització `dist/index.html`.
+
+## Canvis de la versió 0.6.6
+
+- **Parlar ja no ha de ser el botó més gran.** En editar la disposició dels botons, Parlar ha de continuar sent visible, però ja pot tenir qualsevol mida, com els altres (decisió de Marc, 7 de novembre de 2026).
+- **Botons només amb icona.** Els botons del grup principal (Parlar, Aturar, Mostrar, Esborrar paraula, Esborrar-ho tot, Desfer, Refer i Nou missatge) mostren només la icona. El nom es manté com a nom accessible i com a indicació en passar-hi el ratolí.
+- **Desfer i Refer al grup de botons.** Desfer i Refer són ara botons del grup principal, que es poden col·locar, redimensionar i amagar a l’editor de botons com els altres, i ja no surten a sota del camp del missatge. La graella lateral passa de 2 × 5 a 2 × 6. A la posició inferior, en pantalles de menys de 700 px d’amplada i sense disposició desada, els botons es reparteixen en dues files perquè no quedin massa estrets.
+- **Pestanya Documents.** Nova pestanya del panell per preparar textos llargs de text pla abans de dir-los. Permet crear, obrir, reanomenar, editar (es desa automàticament), eliminar, importar fitxers `.txt` i exportar-los. Des d’un document es pot parlar tot el text o només la selecció, mostrar-lo a pantalla completa o portar-lo al missatge. Els documents es desen en aquest navegador, separats per perfil (fins a 200 documents de 200.000 caràcters).
+- `sw.js` passa a `keryx-0.6.6`.
+
+La 0.6.6 s’obté aplicant `tools/patch-0.6.6/patch066.py` sobre l’HTML de la 0.6.5 (commit `5882800`).
+
+Validació (7 de novembre de 2026), Chromium amb Playwright: amb els botons a baix, a l’esquerra i a la dreta, a 1280×800, 768×1024, 390×844 i 740×360, tots els botons (també Desfer i Refer) són al grup, sense text visible i sense desplaçament de la pàgina. Les sis pestanyes caben en una fila a 320, 390, 740 i 1280 px. A Documents: crear, editar, desar automàticament, portar al missatge, tornar a la llista i conservar-lo després de recarregar funcionen, i no hi ha errors de JavaScript.
 
 ## Canvis de la versió 0.6.5
 

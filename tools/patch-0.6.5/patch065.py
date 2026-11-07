@@ -42,6 +42,18 @@ for a,b in CA.items(): repall(a,b)
 # Same correction in the other languages of the "still pending" list.
 for a,b in [("instalación PWA, servicios","servicios"),("PWA instalazioa, ahots","ahots"),("instalación PWA, servizos","servizos"),("PWA installation, additional","additional"),("installation PWA, services","services")]: repall(a,b)
 
+# --- «Per què es diu Keryx» in the Information window (Marc, 2026-11-07): short, from the planning document, section 1.1.
+import os, json as _j
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from name_section import H, P, REFS
+J=lambda x:_j.dumps(x,ensure_ascii=False)
+sec="el('h3',{},tr(%s,%s)),"%(J(H['ca']),J(H['es']))+"".join("el('p',{},tr(%s,%s)),"%(J(p['ca']),J(p['es'])) for p in P)
+rep("el('h3',{},tr('Projecte i crèdits','Proyecto y créditos'))", sec+"el('h3',{},tr('Projecte i crèdits','Proyecto y créditos'))")
+rep("const refs=[['UTAC. (2026). LECAA Docs", "const refs=["+"".join("[%s,%s],"%(J(t),J(u)) for t,u in REFS)+"['UTAC. (2026). LECAA Docs")
+for lang in ['eu','gl','en','fr']:
+    ins=J(H['ca'])+':'+J(H[lang])+','+''.join(J(p['ca'])+':'+J(p[lang])+',' for p in P)
+    rep('"%s":{"'%lang,'"%s":{'%lang+ins+'"')
+
 # --- header buttons (Marc, 2026-11-07): Install shows only its icon, at the size of the other icon buttons;
 # Info looks like a button, as Settings does.
 rep('<button id="info-button" class="icon-only flat" aria-haspopup="dialog"></button><button id="install-button" class="install-button" type="button" hidden></button>',

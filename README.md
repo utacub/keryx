@@ -13,7 +13,7 @@ Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior min
 ## Canvis de la versió 0.6.3
 
 - **Arrossegar a l’editor dels botons principals.** Un botó es mou arrossegant-lo dins la graella, i canvia de mida arrossegant la cantonada inferior dreta del botó seleccionat. Si es deixa anar sobre un botó de la mateixa mida, s’intercanvien. Mentre s’arrossega, la graella mostra on quedarà; si la posició no és vàlida (solapament, fora de la graella o un botó tan gran com Parlar), el botó es marca amb un contorn discontinu i en deixar-lo anar torna on era, amb el motiu escrit a sota.
-- Els botons de control (Esquerra, Dreta, Amunt, Avall, Més ample…) es mantenen: arrossegar no és possible per a tothom, i les WCAG 2.2 demanen una alternativa d’un sol toc per a tota acció d’arrossegar (W3C, 2023, criteri 2.5.7). També es mantenen per al teclat, l’escombratge i la permanència.
+- Els botons de control (Esquerra, Dreta, Amunt, Avall, Més ample…) queden plegats sota un botó «Mostrar controls» quan l’accés és directe, i oberts d’entrada amb escombratge o permanència; l’editor recorda si s’han obert durant la sessió. Es mantenen perquè arrossegar no és possible per a tothom, i les WCAG 2.2 demanen una alternativa d’un sol toc per a tota acció d’arrossegar (W3C, 2023, criteri 2.5.7). També es mantenen per al teclat, l’escombratge i la permanència.
 
 La 0.6.3 s’obté aplicant `tools/patch-0.6.3/patch063.py` sobre l’HTML de la 0.6.2 (commit `8e2b93d`):
 

@@ -1,14 +1,25 @@
-# UTAC Keryx 0.6.3
+# UTAC Keryx 0.6.4
 
-Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.3_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
+Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.4_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
 
 ## Aplicació web i fitxer local
 
 - Aplicació: https://utacub.github.io/keryx/
-- Edició descarregable: [`UTAC_Keryx_v0.6.3_local.html`](UTAC_Keryx_v0.6.3_local.html).
+- Edició descarregable: [`UTAC_Keryx_v0.6.4_local.html`](UTAC_Keryx_v0.6.4_local.html).
 - La web i l’HTML descarregable contenen la mateixa aplicació. Les dades de cada navegador i origen són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel. `index.html` és autònom; `.nojekyll` evita el processament Jekyll.
 - Per publicar una modificació: executeu `python3 build.py`, les proves indicades més avall i incorporeu els fitxers resultants a `main`. La construcció actualitza `index.html`, l’HTML descarregable i la previsualització `dist/index.html`.
+
+## Canvis de la versió 0.6.4
+
+- **Aplicació instal·lable (PWA).** La web té ara un manifest (`manifest.webmanifest`), les icones del kit de marca (`icons/`: 192 i 512 px, versions maskable i icona d’Apple de 180 px) i un service worker (`sw.js`). Un cop oberta, Keryx funciona sense connexió: la pàgina es demana primer a la xarxa, de manera que una versió nova s’aplica en tornar a obrir amb connexió, i sense connexió es fa servir la còpia desada. El service worker no intervé en les descàrregues de veus ni en altres llocs.
+- **Botó «Instal·lar» a dalt a la dreta.** Als navegadors que ho permeten (Chrome, Edge, Samsung Internet…), obre el diàleg d’instal·lació del navegador. A l’iPhone i l’iPad explica com fer-ho amb Safari (Comparteix → Afegeix a la pantalla d’inici), perquè Safari no permet que una web obri aquest diàleg. Als altres navegadors indica on és l’opció al menú. Si l’HTML s’ha obert des de l’ordinador, explica que cal obrir-lo des de la web. El botó desapareix quan Keryx funciona instal·lat. En pantalles de 1000 px o menys només mostra la icona.
+- La política de seguretat de contingut admet ara el manifest, les icones i el service worker del mateix origen (`manifest-src 'self'`, `img-src 'self'`, `worker-src 'self'`).
+- En publicar una versió nova cal canviar `VERSION` a `sw.js`, perquè els dispositius instal·lats descartin la còpia anterior.
+
+La 0.6.4 s’obté aplicant `tools/patch-0.6.4/patch064.py` sobre l’HTML de la 0.6.3 (commit `e338cc4`).
+
+Validació (7 de novembre de 2026), Chromium amb Playwright servint la carpeta per HTTP local: el service worker s’activa; Chromium no troba errors al manifest ni cap motiu que impedeixi la instal·lació; en recarregar sense connexió l’aplicació s’obre igualment; la capçalera hi cap sense desbordar-se a 320, 360 i 390 px d’amplada; les proves de pantalla fixa de la 0.6.2 continuen passant. No s’ha provat la instal·lació real en Android, iOS ni escriptori.
 
 ## Canvis de la versió 0.6.3
 

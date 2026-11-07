@@ -1,14 +1,23 @@
-# UTAC Keryx 0.6.6
+# UTAC Keryx 0.6.7
 
-Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.6_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
+Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.7_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
 
 ## Aplicació web i fitxer local
 
 - Aplicació: https://utacub.github.io/keryx/
-- Edició descarregable: [`UTAC_Keryx_v0.6.6_local.html`](UTAC_Keryx_v0.6.6_local.html).
+- Edició descarregable: [`UTAC_Keryx_v0.6.7_local.html`](UTAC_Keryx_v0.6.7_local.html).
 - La web i l’HTML descarregable contenen la mateixa aplicació. Les dades de cada navegador i origen són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel. `index.html` és autònom; `.nojekyll` evita el processament Jekyll.
 - Per publicar una modificació: executeu `python3 build.py`, les proves indicades més avall i incorporeu els fitxers resultants a `main`. La construcció actualitza `index.html`, l’HTML descarregable i la previsualització `dist/index.html`.
+
+## Canvis de la versió 0.6.7
+
+- **Documents més estrets.** A la pestanya Documents, cada fila ocupa uns 44 px en lloc de 70, i a cada pàgina se'n veuen com a mínim quatre (fins a deu si hi caben). Als mòbils i a les pantalles baixes s'amaga el text explicatiu de la barra, i a les files només hi queden el títol i el botó Parlar amb la icona. La data i les paraules es continuen veient a les pantalles amples (Marc, 7 de novembre de 2026).
+- `sw.js` passa a `keryx-0.6.7`.
+
+La 0.6.7 s'obté aplicant `tools/patch-0.6.7/patch067.py` sobre l'HTML de la 0.6.6 (commit `832b32c`).
+
+Validació (7 de novembre de 2026), Chromium amb Playwright i nou documents de prova: a 1280×800 se'n veuen 4 per pàgina, a 390×844 5, a 320×568 4, a 740×360 4 i a 768×1024 6. Cap fila surt de la llista, no hi ha desplaçament de la pàgina i no hi ha errors de JavaScript.
 
 ## Canvis de la versió 0.6.6
 

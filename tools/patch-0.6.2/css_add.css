@@ -1,0 +1,23 @@
+
+/* 0.6.2: the main buttons (Speak, Stop, Show, New message) sit below the message, or in a column to its left or right. Speak is always the largest. */
+.composer{--side-actions-w:clamp(104px,24%,230px)}
+.composer[data-actions=left],.composer[data-actions=right]{display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;grid-template-columns:minmax(0,1fr) var(--side-actions-w)}
+.composer[data-actions=left]{grid-template-columns:var(--side-actions-w) minmax(0,1fr)}
+.composer[data-actions=left]>.composer-head,.composer[data-actions=right]>.composer-head{grid-row:1}
+.composer[data-actions=left]>#message,.composer[data-actions=right]>#message{grid-row:2;height:auto;min-height:0}
+.composer[data-actions=left]>.suggestions,.composer[data-actions=right]>.suggestions{grid-row:3}
+.composer[data-actions=left]>.text-tools,.composer[data-actions=right]>.text-tools{grid-row:4}
+.composer[data-actions=right]>:not(.composer-actions){grid-column:1}
+.composer[data-actions=left]>:not(.composer-actions){grid-column:2}
+.composer[data-actions=left] .composer-actions,.composer[data-actions=right] .composer-actions{grid-row:1/-1;display:flex;flex-direction:column;gap:7px;padding:8px;border-top:0;min-height:0}
+.composer[data-actions=right] .composer-actions{grid-column:2;border-left:1px solid var(--line)}
+.composer[data-actions=left] .composer-actions{grid-column:1;border-right:1px solid var(--line)}
+.composer[data-actions=left] .composer-actions button,.composer[data-actions=right] .composer-actions button{flex:1 1 0;height:auto;min-height:34px;padding:3px 4px;flex-direction:column;gap:2px;white-space:normal;overflow-wrap:normal;word-break:normal;hyphens:manual;line-height:1.1;text-align:center}
+.composer[data-actions=left] .composer-actions .speak,.composer[data-actions=right] .composer-actions .speak{flex-grow:2.2;gap:4px}
+@media(max-height:520px){.composer[data-actions=left] .composer-actions button:not(.speak) .icon,.composer[data-actions=right] .composer-actions button:not(.speak) .icon{display:none}.composer[data-actions=left] .composer-actions button:not(.speak),.composer[data-actions=right] .composer-actions button:not(.speak){font-size:13px}}
+/* Low landscape windows with the panel open: Speak takes the whole first row; the other three lose their icons so the labels fit. */
+@media(max-height:430px) and (min-width:600px){.main:not([data-view=closed]) .composer[data-actions=bottom] .composer-actions button:not(.speak) .icon{display:none}.main:not([data-view=closed]) .composer[data-actions=bottom] .composer-actions button:not(.speak){font-size:13px;padding:3px 4px}}
+.composer[data-actions=left] .composer-actions kbd,.composer[data-actions=right] .composer-actions kbd{display:none}
+/* 0.6.2: the focus ring follows the active theme. On filled primary buttons it uses the button's own text colour, so it stays visible. */
+button.primary:focus-visible,.panel-toggle:focus-visible,.keyboard-input button.primary:focus,.keyboard-input .panel-toggle:focus{outline-color:var(--primaryText)}
+button.primary.scan-highlight,button.primary.dwell-active,.panel-toggle.scan-highlight,.panel-toggle.dwell-active{outline-color:var(--primaryText)!important}

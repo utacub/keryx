@@ -24,7 +24,7 @@ rep("theme:'light',fontSize:30,controlSize:1,","theme:'light',fontSize:30,contro
 rep("layout:['qwerty','abc'],","layout:['qwerty','abc'],actionsPosition:['bottom','left','right'],")
 rep("rangeField(tr('Mida dels controls','Tamaño de los controles'),'controlSize',1,1.4,.1,x=>Math.round(x*100)+'%'),",
     "rangeField(tr('Mida dels controls','Tamaño de los controles'),'controlSize',1,1.4,.1,x=>Math.round(x*100)+'%'),"
-    "field(tr('Posició dels botons principals','Posición de los botones principales'),selectControl([['bottom',tr('Sota el missatge','Debajo del mensaje')],['left',tr('A l’esquerra del missatge','A la izquierda del mensaje')],['right',tr('A la dreta del missatge','A la derecha del mensaje')]],p.actionsPosition||'bottom',v=>{set('actionsPosition',v);applyAppearance();}),tr('Parlar, Aturar, Mostrar, Esborrar paraula, Esborrar-ho tot i Nou missatge. Parlar sempre és el botó més gran.','Hablar, Detener, Mostrar, Borrar palabra, Borrarlo todo y Nuevo mensaje. Hablar siempre es el botón más grande.')),")
+    "field(tr('Posició dels botons principals','Posición de los botones principales'),selectControl([['bottom',tr('Sota el missatge','Debajo del mensaje')],['left',tr('A l’esquerra del missatge','A la izquierda del mensaje')],['right',tr('A la dreta del missatge','A la derecha del mensaje')]],p.actionsPosition||'bottom',v=>{set('actionsPosition',v);applyAppearance();}),tr('Parlar, Aturar, Mostrar, Esborrar paraula, Esborrar-ho tot i Nou missatge. Parlar sempre és el botó més gran.','Hablar, Detener, Mostrar, Borrar palabra, Borrarlo todo y Nuevo mensaje. Hablar siempre es el botón más grande.')),button(tr('Edició dels botons principals','Edición de los botones principales'),()=>actionEditor(),'','edit'),")
 
 # --- apply: actions position, and the focus ring takes the theme's primary colour
 rep("document.documentElement.style.setProperty('--message-size',prefs().fontSize+'px');",
@@ -48,6 +48,52 @@ rep("n.append(speak,stop,show,fresh);",
     "n.append(speak,stop,show,word,wipe,fresh);")
 rep("function newMessage(){",
     "function clearAllText(){if(!$('message').value)return;stopTypingFeedback();speech.stop();setMessage('',0);restoreInputFocus();notify(tr('Missatge esborrat. Desfer el recupera.','Mensaje borrado. Deshacer lo recupera.'));}\nfunction newMessage(){")
+
+# --- editor of the main buttons (Marc, 2026-11-07)
+T2={
+ "Edició dels botons principals":["Botoi nagusien edizioa","Edición dos botóns principais","Edit main buttons","Modifier les boutons principaux"],
+ "Toca un botó de la graella per seleccionar-lo. Després mou-lo, canvia’n la mida o toca una casella buida per portar-l’hi. Parlar sempre és visible i sempre és el botó més gran.":["Ukitu sareta botoi bat hautatzeko. Gero mugitu, aldatu tamaina edo ukitu gelaxka huts bat hara eramateko. Hitz egin beti dago ikusgai eta beti da botoirik handiena.","Toca un botón da grella para seleccionalo. Despois móveo, cambia o seu tamaño ou toca unha casa baleira para levalo alí. Falar sempre está visible e sempre é o botón máis grande.","Tap a button in the grid to select it. Then move it, resize it, or tap an empty cell to put it there. Speak is always shown and is always the largest button.","Touchez un bouton de la grille pour le sélectionner. Ensuite, déplacez-le, changez sa taille ou touchez une case vide pour l’y mettre. Parler est toujours visible et toujours le plus grand bouton."],
+ "Graella dels botons":["Botoien sareta","Grella dos botóns","Button grid","Grille des boutons"],
+ "Columna lateral · 2 × 5":["Alboko zutabea · 2 × 5","Columna lateral · 2 × 5","Side column · 2 × 5","Colonne latérale · 2 × 5"],
+ "Sota el missatge · 12 × 2":["Mezuaren azpian · 12 × 2","Debaixo da mensaxe · 12 × 2","Below the message · 12 × 2","Sous le message · 12 × 2"],
+ "Seleccionat: ":["Hautatua: ","Seleccionado: ","Selected: ","Sélectionné : "],
+ "amagat":["ezkutatua","oculto","hidden","masqué"],
+ "Esquerra":["Ezkerrera","Esquerda","Left","Gauche"],
+ "Dreta":["Eskuinera","Dereita","Right","Droite"],
+ "Amunt":["Gora","Arriba","Up","Haut"],
+ "Avall":["Behera","Abaixo","Down","Bas"],
+ "Més ample":["Zabalagoa","Máis ancho","Wider","Plus large"],
+ "Més estret":["Estuagoa","Máis estreito","Narrower","Plus étroit"],
+ "Més alt":["Altuagoa","Máis alto","Taller","Plus haut"],
+ "Més baix":["Baxuagoa","Máis baixo","Shorter","Moins haut"],
+ "Botons visibles":["Ikusgai dauden botoiak","Botóns visibles","Visible buttons","Boutons visibles"],
+ "Sempre visible.":["Beti ikusgai.","Sempre visible.","Always shown.","Toujours visible."],
+ "Restablir":["Berrezarri","Restablecer","Reset","Réinitialiser"],
+ "Cancel·lar":["Utzi","Cancelar","Cancel","Annuler"],
+ "Desar":["Gorde","Gardar","Save","Enregistrer"],
+ "Casella buida":["Gelaxka hutsa","Casa baleira","Empty cell","Case vide"],
+ "No hi cap dins de la graella.":["Ez da saretan sartzen.","Non cabe na grella.","It does not fit in the grid.","Il ne tient pas dans la grille."],
+ "Aquest lloc ja l’ocupa ":["Leku hau honek hartzen du: ","Este lugar xa o ocupa ","This place is taken by ","Cette place est occupée par "],
+ "Parlar ha de ser més gran que la resta de botons.":["Hitz egin botoiak besteak baino handiagoa izan behar du.","Falar ten que ser máis grande que o resto de botóns.","Speak must be larger than the other buttons.","Parler doit être plus grand que les autres boutons."],
+ "Aquest botó està amagat.":["Botoi hau ezkutatuta dago.","Este botón está oculto.","This button is hidden.","Ce bouton est masqué."],
+ "No queda lloc lliure. Fes més petit o amaga un altre botó.":["Ez dago leku librerik. Txikitu edo ezkutatu beste botoi bat.","Non queda sitio libre. Fai máis pequeno ou oculta outro botón.","There is no free space. Make another button smaller or hide it.","Il n’y a plus de place. Réduisez ou masquez un autre bouton."],
+ "S’ha recuperat la disposició inicial. Desa per aplicar-la.":["Hasierako antolamendua berreskuratu da. Gorde aplikatzeko.","Recuperouse a disposición inicial. Garda para aplicala.","The initial layout is back. Save to apply it.","La disposition initiale est rétablie. Enregistrez pour l’appliquer."],
+ "Botons principals desats.":["Botoi nagusiak gorde dira.","Botóns principais gardados.","Main buttons saved.","Boutons principaux enregistrés."],
+ "Mou, canvia de mida, mostra o amaga cada botó.":["Mugitu, aldatu tamaina, erakutsi edo ezkutatu botoi bakoitza.","Move, cambia o tamaño, mostra ou oculta cada botón.","Move, resize, show or hide each button.","Déplacez, redimensionnez, affichez ou masquez chaque bouton."],
+}
+for i,lang in enumerate(['eu','gl','en','fr']):
+    ins=''.join(json.dumps(k,ensure_ascii=False)+':'+json.dumps(v[i],ensure_ascii=False)+',' for k,v in T2.items() if k not in ('Desar','Cancel·lar') or ('"%s":'%k) not in s.split('"%s":{'%lang,1)[1][:200000])
+    rep('"%s":{"'%lang,'"%s":{'%lang+ins+'"')
+# core: keep a valid saved layout through reloads and backups
+rep("    return s;\n  }\n  function validateBackup(raw) {",
+    "    s.actionLayouts=actionLayouts(raw.actionLayouts);\n    return s;\n  }\n"
+    "  function actionLayouts(raw){const out={side:null,bottom:null};if(!raw||typeof raw!=='object'||Array.isArray(raw))return out;const grids={side:[2,5],bottom:[12,2]};for(const k of ['side','bottom']){const L=raw[k];if(!L||typeof L!=='object'||Array.isArray(L))continue;const [C,R]=grids[k];const o={};let ok=true;for(const id of ['speak','stop','show','word','clear','new']){const v=L[id];if(!Array.isArray(v)||v.length!==5||!v.every(Number.isInteger)){ok=false;break;}const [x,y,w,h,on]=v;if(x<0||y<0||w<1||h<1||x+w>C||y+h>R||(on!==0&&on!==1)){ok=false;break;}o[id]=v.slice();}if(ok&&o.speak[4]===1)out[k]=o;}return out;}\n"
+    "  function validateBackup(raw) {")
+# app: the editor, applied after the buttons are drawn and when the position changes
+js=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'action_editor.js'),encoding='utf-8').read()
+rep("function clearAllText(){","%s\nfunction clearAllText(){"%js.strip())
+rep("n.append(speak,stop,show,word,wipe,fresh);","n.append(speak,stop,show,word,wipe,fresh);applyActionLayout();")
+rep("$('composer').dataset.actions=prefs().actionsPosition||'bottom';","$('composer').dataset.actions=prefs().actionsPosition||'bottom';if(typeof applyActionLayout==='function')applyActionLayout();")
 
 # --- CSS
 css=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'css_add.css'),encoding='utf-8').read()

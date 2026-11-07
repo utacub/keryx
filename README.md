@@ -13,7 +13,7 @@ Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior min
 ## Canvis de la versió 0.6.5
 
 - **Sense finestra de primera vegada.** La finestra «Comencem amb Keryx» ja no s’obre en entrar per primer cop: Keryx comença directament a la pantalla principal, en català, amb accés directe (tacte, ratolí o teclat). La llengua es canvia amb el botó de la capçalera, i l’accés i la veu, a Ajustos (decisió de Marc, 7 de novembre de 2026).
-- **Versió al costat del logo.** El número de versió apareix en petit a la dreta del logo, a la capçalera. La caixa del logo s’ajusta ara al dibuix, i als mòbils de 400 px o menys el logo i els espais de la capçalera s’estrenyen una mica perquè tot hi càpiga fins a 320 px.
+- **Versió al costat del logo.** La versió apareix en petit a la dreta del logo («v. 0.6.5»), alineada per sota amb la línia de base de la paraula Keryx (al 65,2 % de l’alçada del logo, mesurat sobre l’SVG de marca). La caixa del logo s’ajusta ara al dibuix, i als mòbils de 400 px o menys el logo i els espais de la capçalera s’estrenyen una mica perquè tot hi càpiga fins a 320 px.
 - **Botons de la capçalera.** «Instal·lar» mostra només la icona, amb la mida dels altres botons d’icona; el text queda com a nom accessible. «Informació» té ara aspecte de botó, com «Ajustos» (decisions de Marc, 7 de novembre de 2026).
 - **Revisió del català.** S’ha revisat tot el text en català que es veu a Keryx (botons, avisos, ajustos, ajuda, informació i frases). Correccions:
   - la tecla de majúscules s’anomena «Maj», no «Majús»;

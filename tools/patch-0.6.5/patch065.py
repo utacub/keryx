@@ -55,13 +55,17 @@ s=s[:a]+""".install-button{background:var(--primary);border-color:var(--primary)
 i=s.index('<img class="brand brand-positive"')
 s=s[:i]+'<span class="brand-wrap">'+s[i:]
 i=s.index('class="brand brand-negative"'); j=s.index('alt="UTAC Keryx">',i)+len('alt="UTAC Keryx">')
-s=s[:j]+'<span class="brand-version" title="Versió 0.6.5">0.6.5</span></span>'+s[j:]
+s=s[:j]+'<span class="brand-version" title="Versió 0.6.5"><span>v.\u00a00.6.5</span></span></span>'+s[j:]
 CSS="""
 /* 0.6.5: version next to the logo. The logo box now fits the drawing, and the number sits at its bottom right. */
-.brand-wrap{display:inline-flex;align-items:flex-end;gap:5px;flex:none}
+.brand-wrap{display:inline-flex;align-items:stretch;gap:5px;flex:none}
 .header-inner img.brand{width:auto!important;aspect-ratio:2752/742}
-.brand-version{margin-bottom:.12em;font-size:11px;line-height:1;font-weight:600;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
-@media(max-width:400px){.brand-wrap{gap:3px}.brand-version{font-size:10px}.header-inner{gap:2px;padding-inline:8px}.header-control{gap:2px}.header-inner .brand{height:26px!important}}\n@media(max-width:350px){.header-inner .brand{height:22px!important}.brand-version{font-size:9px}.header-control{gap:0}}
+/* The number sits on the baseline of the word Keryx, which is at 65.2 % of the logo height (measured on the brand SVG). */
+.brand-version{padding-left:1ch;display:grid;grid-template-rows:65.2fr 34.8fr;align-items:end;font-size:10px;line-height:1;font-weight:600;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.brand-version::after{content:""}
+.brand-version>span{transform:translateY(.24em)}
+@media(max-width:400px){.brand-wrap{gap:3px}.brand-version{font-size:9px}.header-inner{gap:2px;padding-inline:6px}.header-control{gap:2px}.header-inner .brand{height:24px!important}}
+@media(max-width:350px){.header-inner .brand{height:21px!important}.brand-version{font-size:8px}.header-control{gap:0}}
 """
 i=s.rindex('</style>'); s=s[:i]+CSS+s[i:]
 open(dst,'w',encoding='utf-8',newline='').write(s)

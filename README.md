@@ -12,7 +12,8 @@ Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior min
 
 ## Canvis de la versió 0.6.2
 
-- **Posició dels botons principals.** Nova opció a Ajustos → Pantalla: Parlar, Aturar, Mostrar i Nou missatge poden anar sota el missatge (com fins ara), en una columna a l’esquerra o en una columna a la dreta. En columna, el missatge guanya alçada. L’ordre d’escombratge i de tabulació no canvia.
+- **Botons principals.** El grup Parlar, Aturar, Mostrar i Nou missatge incorpora «Esborrar paraula», que abans era un botó petit sota el missatge i se n’ha tret, i un botó nou, «Esborrar-ho tot» (paperera). «Esborrar-ho tot» buida el missatge; Desfer el recupera.
+- **Posició dels botons principals.** Nova opció a Ajustos → Pantalla: els botons poden anar sota el missatge (com fins ara), en una columna a l’esquerra o en una columna a la dreta. En columna, Aturar i Mostrar, i Esborrar paraula i Esborrar-ho tot, comparteixen fila a mitja amplada; en columnes estretes, aquests quatre només mostren la icona, i el nom continua disponible per als lectors de pantalla. Sota el missatge, en mòbils en vertical, els botons ocupen dues files. En columna, el missatge guanya alçada.
 - **Parlar sempre és el botó més gran**, en totes les posicions i mides. En finestres baixes en horitzontal amb el panell obert, Parlar ocupa tota la primera fila (abans, una quarta part).
 - **El marc de focus segueix el tema.** El contorn del camp actiu (per exemple, el missatge mentre s’escriu) i el ressaltat d’escombratge i permanència prenen el color principal del tema, en lloc d’un blau fix. Sobre els botons plens del color principal, el contorn pren el color del text del botó perquè es continuï veient. El contrast del color principal amb el fons és d’almenys 4,74:1 en els 33 temes, per sobre del mínim de 3:1 per a components de la interfície (W3C, 2023, criteri 1.4.11).
 - **La finestra d’Informació es desplaça** en lloc de dividir-se en pàgines, com els ajustos. També el manual d’accés amb teclat i les llicències que s’hi obren.
@@ -26,7 +27,7 @@ python3 tools/patch-0.6.2/patch062.py UTAC_Keryx_v0.6.1_local.html UTAC_Keryx_v0
 
 ### Validació de la 0.6.2 (7 de novembre de 2026)
 
-Chromium amb Playwright a 1280 × 800, 640 × 400, 768 × 1024, 390 × 844, 360 × 640 i 740 × 360, amb les tres posicions dels botons: el document no es desplaça, cap botó principal no queda tallat, Parlar té més superfície que cada un dels altres tres i no hi ha errors de JavaScript. L’opció es desa i es recupera en tornar a carregar. S’ha comprovat el marc de focus amb els temes Clar, Fosc, Rosa i Alt contrast, i que la finestra d’Informació té una sola pàgina amb desplaçament. Límits: no s’ha provat en dispositius reals ni amb lectors de pantalla.
+Chromium amb Playwright a 1280 × 800, 640 × 400, 768 × 1024, 390 × 844, 360 × 640 i 740 × 360, amb les tres posicions dels botons: el document no es desplaça, cap botó principal no queda tallat, Parlar té més superfície que cada un dels altres cinc i no hi ha errors de JavaScript. Esborrar paraula i Esborrar-ho tot mantenen el cursor al missatge, i Desfer recupera el text esborrat. L’opció es desa i es recupera en tornar a carregar. S’ha comprovat el marc de focus amb els temes Clar, Fosc, Rosa i Alt contrast, i que la finestra d’Informació té una sola pàgina amb desplaçament. Límits: no s’ha provat en dispositius reals ni amb lectors de pantalla.
 
 W3C. (2023). *Web Content Accessibility Guidelines (WCAG) 2.2*. https://www.w3.org/TR/WCAG22/
 

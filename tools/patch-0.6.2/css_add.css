@@ -1,0 +1,76 @@
+
+/* 0.6.2: the main buttons (Speak, Stop, Show, Delete word, Clear all, New message) sit below the message, or in a column to its left or right. Speak is always the largest. */
+.composer{--side-actions-w:clamp(124px,30%,240px)}
+@media(min-width:900px){.composer{--side-actions-w:clamp(124px,22%,240px)}}
+.composer-actions{container:actions/inline-size}
+/* A label that is hidden stays available to screen readers. */
+.composer-actions button.label-hidden span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* Below the message: one row of six. */
+.composer[data-actions=bottom] .composer-actions{grid-template-columns:1.65fr 1fr 1fr 1fr 1fr 1.15fr}
+@container actions (max-width:1000px){.composer[data-actions=bottom] .composer-actions:not([data-custom]) .erase span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.composer[data-actions=bottom] .composer-actions .erase .icon{width:22px;height:22px}}
+@container actions (max-width:820px){.composer[data-actions=bottom] .composer-actions kbd{display:none}.composer[data-actions=bottom] .composer-actions button:not(.speak):not(.erase) .icon{display:none}}
+/* Phones in portrait: two rows. Speak takes two thirds of the first. */
+@media(max-width:600px){
+ .composer[data-actions=bottom] .composer-actions{grid-template-columns:repeat(6,minmax(0,1fr))}
+ .composer[data-actions=bottom] .composer-actions .speak{grid-column:span 4}
+ .composer[data-actions=bottom] .composer-actions .delete-word,.composer[data-actions=bottom] .composer-actions .clear-all,.composer[data-actions=bottom] .composer-actions .new-message{grid-column:span 2}
+ .composer[data-actions=bottom] .composer-actions .stop .icon,.composer[data-actions=bottom] .composer-actions #show-message .icon{display:none}
+}
+/* Low landscape windows with the panel open: Speak takes the whole first row; the other five share the second. */
+@media(max-height:430px) and (min-width:600px){.main:not([data-view=closed]) .composer[data-actions=bottom] .composer-actions{grid-template-columns:1fr 1fr .75fr .75fr 1.4fr}.main:not([data-view=closed]) .composer[data-actions=bottom] .composer-actions .speak{grid-column:1/-1}.main:not([data-view=closed]) .composer[data-actions=bottom] .composer-actions button:not(.speak):not(.erase) .icon{display:none}.main:not([data-view=closed]) .composer[data-actions=bottom] .composer-actions button:not(.speak){font-size:13px;padding:3px 4px}}
+
+/* In a column: Speak on top, then Stop and Show side by side, Delete word and Clear all side by side, and New message. */
+.composer[data-actions=left],.composer[data-actions=right]{display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;grid-template-columns:minmax(0,1fr) var(--side-actions-w)}
+.composer[data-actions=left]{grid-template-columns:var(--side-actions-w) minmax(0,1fr)}
+.composer[data-actions=left]>.composer-head,.composer[data-actions=right]>.composer-head{grid-row:1}
+.composer[data-actions=left]>#message,.composer[data-actions=right]>#message{grid-row:2;height:auto;min-height:0}
+.composer[data-actions=left]>.suggestions,.composer[data-actions=right]>.suggestions{grid-row:3}
+.composer[data-actions=left]>.text-tools,.composer[data-actions=right]>.text-tools{grid-row:4}
+.composer[data-actions=right]>:not(.composer-actions){grid-column:1}
+.composer[data-actions=left]>:not(.composer-actions){grid-column:2}
+.composer[data-actions=left] .composer-actions,.composer[data-actions=right] .composer-actions{grid-row:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,2.2fr) repeat(3,minmax(0,1fr));gap:7px;padding:8px;border-top:0;min-height:0}
+.composer[data-actions=right] .composer-actions{grid-column:2;border-left:1px solid var(--line)}
+.composer[data-actions=left] .composer-actions{grid-column:1;border-right:1px solid var(--line)}
+.composer[data-actions=left] .composer-actions button,.composer[data-actions=right] .composer-actions button{height:auto;min-height:0;min-width:0;padding:3px 4px;flex-direction:column;gap:2px;white-space:normal;overflow-wrap:normal;word-break:normal;hyphens:manual;line-height:1.1;text-align:center;font-size:14px}
+.composer[data-actions=left] .composer-actions .speak,.composer[data-actions=right] .composer-actions .speak,.composer[data-actions=left] .composer-actions .new-message,.composer[data-actions=right] .composer-actions .new-message{grid-column:1/-1}
+.composer[data-actions=left] .composer-actions .speak,.composer[data-actions=right] .composer-actions .speak{gap:4px;font-size:20px}
+.composer[data-actions=left] .composer-actions kbd,.composer[data-actions=right] .composer-actions kbd{display:none}
+.composer[data-actions=left] .composer-actions .new-message .icon,.composer[data-actions=right] .composer-actions .new-message .icon{display:inline-block}
+/* Narrow columns: the half-width buttons keep only their icon. */
+@container actions (max-width:200px){
+ .composer[data-actions=left] .composer-actions:not([data-custom]) button:not(.speak):not(.new-message) span,.composer[data-actions=right] .composer-actions:not([data-custom]) button:not(.speak):not(.new-message) span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ .composer[data-actions=left] .composer-actions button:not(.speak):not(.new-message) .icon,.composer[data-actions=right] .composer-actions button:not(.speak):not(.new-message) .icon{display:inline-block;width:22px;height:22px}
+ .composer[data-actions=left] .composer-actions .speak,.composer[data-actions=right] .composer-actions .speak{font-size:17px}
+ .composer[data-actions=left] .composer-actions .new-message,.composer[data-actions=right] .composer-actions .new-message{font-size:13px}
+}
+@media(max-height:520px){.composer[data-actions=left] .composer-actions:not([data-custom]) .erase span,.composer[data-actions=right] .composer-actions:not([data-custom]) .erase span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.composer[data-actions=left] .composer-actions .erase .icon,.composer[data-actions=right] .composer-actions .erase .icon{display:inline-block;width:22px;height:22px}.composer[data-actions=left] .composer-actions,.composer[data-actions=right] .composer-actions{grid-template-rows:minmax(0,1.5fr) repeat(3,minmax(0,1fr));gap:5px;padding:6px}.composer[data-actions=left] .composer-actions .new-message .icon,.composer[data-actions=right] .composer-actions .new-message .icon{display:none}.composer[data-actions=left] .composer-actions button:not(.speak),.composer[data-actions=right] .composer-actions button:not(.speak){font-size:13px}}
+
+/* 0.6.2: a layout saved in the editor. Each button decides from its own width whether its label fits. */
+.composer-actions{--action-row-h:48px}@media(max-height:680px){.composer-actions{--action-row-h:40px}}@media(max-height:520px){.composer-actions{--action-row-h:38px}}@media(min-height:1000px){.composer-actions{--action-row-h:58px}}
+.composer-actions[data-custom] button{container-type:size;min-width:0;min-height:0;height:auto}
+.composer-actions[data-custom] button .icon{display:inline-block!important}
+@container (max-width:230px){.composer-actions[data-custom] button kbd{display:none}}
+@container (max-width:72px) or (max-height:27px){.composer-actions[data-custom] button:not(.speak) span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.composer-actions[data-custom] button:not(.speak) .icon{width:22px;height:22px}}
+@container (max-height:56px){.composer-actions[data-custom] button.speak .icon{display:none!important}}
+@container (max-width:60px){.composer-actions[data-custom] button.speak span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.composer-actions[data-custom] button.speak .icon{width:26px;height:26px}}
+/* Editor of the main buttons */
+.action-editor{display:flex;flex-direction:column;gap:10px}
+.ae-kinds{display:flex;flex-wrap:wrap;gap:6px}.ae-kinds button[aria-pressed=true]{background:var(--primary);color:var(--primaryText);border-color:var(--primary)}
+.ae-grid{display:grid;gap:5px;padding:8px;border:1px solid var(--border);border-radius:12px;background:var(--subtle);flex-shrink:0}
+.ae-grid.ae-side{width:min(100%,250px);height:300px;align-self:center}
+.ae-grid.ae-bottom{width:100%;height:118px}
+.ae-cell{border:1.5px dashed var(--border);background:transparent;border-radius:8px;min-height:0;min-width:0;padding:0}
+.ae-item{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:0;min-height:0;padding:2px;border:2px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text);font-size:12px;font-weight:700;line-height:1.1;text-align:center;overflow:hidden;container-type:inline-size}
+.ae-item .icon{width:18px;height:18px;flex-shrink:0}
+.ae-item.ae-speak{background:var(--primary);color:var(--primaryText);border-color:var(--primary)}
+.ae-item.ae-stop{border-color:var(--danger);color:var(--danger)}
+.ae-item.ae-selected{outline:4px solid var(--text);outline-offset:2px;z-index:2}
+@container (max-width:64px){.ae-item span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
+.ae-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.ae-controls button{min-height:44px;white-space:normal}
+@media(max-width:420px){.ae-controls{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ae-selected-line{margin:0;font-size:15px}.ae-status{margin:0;min-height:1.4em;font-size:14px}
+.ae-toggles{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:4px 12px}
+/* 0.6.2: the focus ring follows the active theme. On filled primary buttons it uses the button's own text colour, so it stays visible. */
+button.primary:focus-visible,.panel-toggle:focus-visible,.keyboard-input button.primary:focus,.keyboard-input .panel-toggle:focus{outline-color:var(--primaryText)}
+button.primary.scan-highlight,button.primary.dwell-active,.panel-toggle.scan-highlight,.panel-toggle.dwell-active{outline-color:var(--primaryText)!important}

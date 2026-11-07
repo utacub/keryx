@@ -144,6 +144,23 @@ CSS="""
 .doc-actions button{min-height:40px}
 @media(max-width:600px),(max-height:500px){.doc-actions button>span:not(.icon){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.doc-actions button{min-width:44px;justify-content:center}.doc-text{font-size:16px}}
 """
+# --- «Per què es diu Keryx» (Marc, 2026-11-07): cite BJ Adaptaciones (2007) instead of Confederación ASPACE (2014),
+# and Marc's own wording for the closing sentence (Catalan); the other languages follow it.
+import os as _os
+sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)),'..','patch-0.6.5'))
+from name_section import P as _P
+NAME_NEW={
+ 'ca':'El nom remet als comunicadors per escrit BJ Hermes i Hermes Mobile, de BJ-Adaptaciones (BJ Adaptaciones, 2007). Keryx és doncs, d’alguna manera, hereu d’aquests i altres programaris, i en vol continuar la tasca ajudant a lliurar el missatge per la persona que no el pot expressar amb la parla.',
+ 'es':'El nombre remite a los comunicadores por escrito BJ Hermes y Hermes Mobile, de BJ-Adaptaciones (BJ Adaptaciones, 2007). Keryx es, pues, de algún modo, heredero de estos y otros programas, y quiere continuar su labor ayudando a entregar el mensaje por la persona que no puede expresarlo con el habla.',
+ 'eu':'Izenak BJ-Adaptaciones-en BJ Hermes eta Hermes Mobile idatzizko komunikatzaileak gogorarazten ditu (BJ Adaptaciones, 2007). Keryx, nolabait, horien eta beste programa batzuen oinordekoa da, eta haien lana jarraitu nahi du, hizketaren bidez adierazi ezin duen pertsonaren mezua ematen lagunduz.',
+ 'gl':'O nome remite aos comunicadores por escrito BJ Hermes e Hermes Mobile, de BJ-Adaptaciones (BJ Adaptaciones, 2007). Keryx é, pois, dalgún xeito, herdeiro destes e doutros programas, e quere continuar o seu labor axudando a entregar a mensaxe pola persoa que non a pode expresar coa fala.',
+ 'en':'The name refers to the text-based communicators BJ Hermes and Hermes Mobile, by BJ-Adaptaciones (BJ Adaptaciones, 2007). Keryx is thus, in a way, an heir to these and other programs, and aims to carry on their work by helping to deliver the message for the person who cannot express it through speech.',
+ 'fr':'Le nom renvoie aux communicateurs écrits BJ Hermes et Hermes Mobile, de BJ-Adaptaciones (BJ Adaptaciones, 2007). Keryx est donc, d’une certaine manière, l’héritier de ces logiciels et d’autres, et veut poursuivre leur tâche en aidant à transmettre le message pour la personne qui ne peut pas l’exprimer par la parole.'}
+for _l in ['es','eu','gl','en','fr']: repall(_P[1][_l], NAME_NEW[_l])
+repall(_P[1]['ca'], NAME_NEW['ca'])
+rep('["Confederación ASPACE. (2014, 29 d’agost). Herramientas de software: Hermes Mobile.","https://aspace.org/blog/725/herramientas-de-software-hermes-mobile"],','')
+rep('["Britannica Editors.','["BJ Adaptaciones. (2007, 2 de novembre). BJ Hermes en el SIMO 2007. El blog de Qinera.","https://blog.qinera.com/baj-adaptaciones-y-toshiba-presentan-baj-hermes-en-el-simo-2007-los-dias-6-11-de-noviembre-de-2007/"],["Britannica Editors.')
+
 i=s.rindex('</style>'); s=s[:i]+CSS+s[i:]
 open(dst,'w',encoding='utf-8',newline='').write(s)
 print('ok',dst)

@@ -1,14 +1,35 @@
-# UTAC Keryx 0.6.4
+# UTAC Keryx 0.6.5
 
-Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.4_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
+Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.5_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
 
 ## Aplicació web i fitxer local
 
 - Aplicació: https://utacub.github.io/keryx/
-- Edició descarregable: [`UTAC_Keryx_v0.6.4_local.html`](UTAC_Keryx_v0.6.4_local.html).
+- Edició descarregable: [`UTAC_Keryx_v0.6.5_local.html`](UTAC_Keryx_v0.6.5_local.html).
 - La web i l’HTML descarregable contenen la mateixa aplicació. Les dades de cada navegador i origen són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel. `index.html` és autònom; `.nojekyll` evita el processament Jekyll.
 - Per publicar una modificació: executeu `python3 build.py`, les proves indicades més avall i incorporeu els fitxers resultants a `main`. La construcció actualitza `index.html`, l’HTML descarregable i la previsualització `dist/index.html`.
+
+## Canvis de la versió 0.6.5
+
+- **Sense finestra de primera vegada.** La finestra «Comencem amb Keryx» ja no s’obre en entrar per primer cop: Keryx comença directament a la pantalla principal, en català, amb accés directe (tacte, ratolí o teclat). La llengua es canvia amb el botó de la capçalera, i l’accés i la veu, a Ajustos (decisió de Marc, 7 de novembre de 2026).
+- **Versió al costat del logo.** La versió apareix en petit a la dreta del logo («v. 0.6.5»), alineada per sota amb la línia de base de la paraula Keryx (al 65,2 % de l’alçada del logo, mesurat sobre l’SVG de marca). La caixa del logo s’ajusta ara al dibuix, i als mòbils de 400 px o menys el logo i els espais de la capçalera s’estrenyen una mica perquè tot hi càpiga fins a 320 px.
+- **Botons de la capçalera.** «Instal·lar» mostra només la icona, amb la mida dels altres botons d’icona; el text queda com a nom accessible. «Informació» té ara aspecte de botó, com «Ajustos» (decisions de Marc, 7 de novembre de 2026).
+- **Crèdits i llicències a la Informació.** Tots els crèdits i llicències són ara a la finestra d’Informació, amb l’estructura de «Sobre LECAA Docs» (`utacub/lecaa_docs`, `src/about.ts`, commit `c1f870a`): logotip, la idea, per què es diu Keryx, l’ajuda d’ús, versió portàtil (a la web), origen i institucions amb els cinc logotips (UTAC, Universitat de Barcelona, Fundació Bosch i Gimpera, Departament d’Educació i Formació Professional, Departament de Drets Socials i Inclusió, presos de LECAA Docs a `tools/patch-0.6.5/logos/`), eines i recursos, llicències (amb el text complet de la GPL i la MIT d’ONNX Runtime i la llicència de cada veu), referències i versió. La finestra separada «Llicències del codi i les veus» desapareix. També es treuen «UTAC · Universitat de Barcelona» del peu i «Prototip local · versió» de la barra de la conversa; la versió es veu al costat del logo. El text és a `tools/patch-0.6.5/about_section.py`.
+- **Per què es diu Keryx.** La finestra d’Informació té un apartat breu, en les sis llengües, sobre l’origen del nom: el grec κῆρυξ (kēryx, «herald»), Hermes com a patró dels heralds, el personatge mític Kēryx (Ceryx, Kèrix), fill d’Hermes segons Pausànies (1.38.3), i el lligam amb BJ Hermes i Hermes Mobile: l’app, com l’herald, lliura el missatge per la persona que no el pot dir parlant. Les fonts (Britannica Editors, s. d.; Confederación ASPACE, 2014; Theoi Project, s. d.) són les de la secció 1.1 del document de planificació i s’han afegit a les referències. El text és a `tools/patch-0.6.5/name_section.py`.
+- **Revisió del català.** S’ha revisat tot el text en català que es veu a Keryx (botons, avisos, ajustos, ajuda, informació i frases). Correccions:
+  - la tecla de majúscules s’anomena «Maj», no «Majús»;
+  - la llista de pendents ja no inclou la instal·lació PWA, que ja està feta;
+  - s’han completat frases a què faltava un complement o un article («Fes més petit un altre botó o amaga’l», «la veu del navegador», «quan torni a obrir Keryx», «els sis idiomes», «una còpia de Keryx»);
+  - «la seva cantonada» passa a «arrossega’n la cantonada», i la lectura de frases es descriu com «en escriure un punt, un interrogant o una exclamació, o en prémer Intro»;
+  - als crèdits, «logotip de Keryx i logotip original d’UTAC, aportats per Marc Coronas» i «GPL-3.0 o posterior».
+
+  Com que el text català és també la clau de les traduccions, cada canvi s’aplica igualment als diccionaris basc, gallec, anglès i francès. El quadre «Aplicació instal·lada» que mostra Windows en instal·lar Keryx amb Edge (amb el botó «No ho permetes») és del sistema i no es pot canviar des de l’aplicació.
+- `sw.js` passa a `keryx-0.6.5`.
+
+La 0.6.5 s’obté aplicant `tools/patch-0.6.5/patch065.py` sobre l’HTML de la 0.6.4 (commit `9cfeff4`).
+
+Validació (7 de novembre de 2026), Chromium amb Playwright i un navegador sense dades: a 1280×800 i 390×844 no s’obre cap finestra ni en la primera visita ni en recarregar, i no hi ha errors de JavaScript. La capçalera no es desborda a 320, 340, 360, 390, 768 i 1280 px d’amplada, ni a 740×360, i tots els botons queden dins la pantalla.
 
 ## Canvis de la versió 0.6.4
 

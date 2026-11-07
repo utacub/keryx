@@ -1,0 +1,53 @@
+.quick-grid[data-page]:not([data-page="0"]) .quick.plain{font-weight:500;background:var(--surface);color:var(--text);font-size:clamp(13px,1.35vw,19px)}
+/* Low landscape windows (phone on its side, laptop with text at 200 %): message on the left, panel on the right, as in plan section 8.2. */
+@media(max-height:430px) and (min-width:600px){
+ .main,.main[data-view]{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:26px minmax(0,1fr) 18px;grid-template-areas:"status work" "board work" "voice work";column-gap:8px}
+ .main[data-view=closed],.main.panel-collapsed{grid-template-columns:minmax(0,1fr);grid-template-rows:26px minmax(0,1fr) 18px 40px;grid-template-areas:"status" "board" "voice" "work"}
+ .status-top{grid-area:status}.conversation-board{grid-area:board;min-height:0}.voice-line{grid-area:voice}.workspace{grid-area:work;min-height:0}
+ .main:not([data-view=closed]) .composer-actions{grid-template-columns:1fr 1fr;gap:5px}
+ .main:not([data-view=closed]) .text-tools button span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ .main:not([data-view=closed]) .text-tools button{padding:4px 6px}
+ .main:not([data-view=closed]) .tabs button{flex-direction:column;gap:2px;font-size:9px;padding:3px 1px}
+ .main:not([data-view=closed]) .workspace-header{height:48px}
+ .library-controls{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+ .library-controls input[type=search]{grid-column:span 6;width:100%;min-width:0}
+ .library-controls select{width:100%;min-width:0}
+ .library-controls button{grid-column:span 3;white-space:normal}
+ .library-controls.with-categories input[type=search],.library-controls.with-categories select{grid-column:span 3}
+ .library-controls.with-categories button{grid-column:span 2}
+ .library-controls input,.library-controls select,.library-controls button{min-height:32px;font-size:11px}
+}
+.text-tools button{white-space:nowrap}
+@media(max-width:900px){.text-tools button span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.text-tools button{padding:4px 8px;min-width:34px}}
+@media(max-width:600px){.main[data-view=phrases],.main[data-view=favorites],.main[data-view=history]{grid-template-rows:24px minmax(178px,.55fr) 24px minmax(0,1.45fr) 36px}}
+@media(max-height:430px) and (min-width:600px){.pager .total{display:none}.pager{gap:4px}.pager button{min-width:64px;padding:4px 6px}.tabs button span{max-width:100%;overflow:hidden;text-overflow:ellipsis}}
+/* Phones: the footer buttons join the top status row, so the panel gains a row of phrases. */
+@media(max-width:600px){
+ .footer{display:none}
+ .status-top #profile-name,.status-top .eyebrow,.status-top .subdued{display:none}
+ .status-top{justify-content:flex-end}
+ .main{grid-template-rows:26px minmax(140px,.85fr) 24px minmax(0,1.15fr)}
+ .main[data-view=phrases],.main[data-view=favorites],.main[data-view=history]{grid-template-rows:26px minmax(178px,.55fr) 24px minmax(0,1.45fr)}
+ .main.panel-collapsed,.main[data-view=closed]{grid-template-rows:26px minmax(140px,1fr) 24px 40px}
+}
+/* 0.6.1b: the panel bar keeps the same height open or closed, and the show/hide button has the same size and place (far right). */
+:root{--panel-bar:52px;--bar-pad:10px;--toggle-w:172px;--toggle-h:40px}
+@media(min-height:1000px){:root{--panel-bar:60px}}
+@media(max-height:680px){:root{--panel-bar:46px;--bar-pad:8px}}
+@media(max-width:1000px){:root{--toggle-w:48px}}
+@media(max-width:600px){:root{--panel-bar:56px;--bar-pad:5px}}
+@media(max-height:520px){:root{--panel-bar:44px;--bar-pad:8px;--toggle-h:36px}}
+@media(max-height:430px) and (min-width:600px){:root{--panel-bar:48px}}
+.workspace-header,.main:not([data-view=closed]) .workspace-header{height:var(--panel-bar)!important;min-height:0!important;padding-right:var(--bar-pad)!important}
+.workspace-header>.panel-toggle,.panel-toggle,.restore-pill{box-sizing:border-box;width:var(--toggle-w);min-width:var(--toggle-w);height:var(--toggle-h);min-height:var(--toggle-h)!important;padding:0 10px;margin:0;border-radius:10px;border:2px solid var(--primary);background:var(--primary);color:var(--primaryText);display:inline-flex;align-items:center;justify-content:center;gap:6px;font-weight:700;font-size:13px;white-space:nowrap;box-shadow:none;flex-shrink:0}
+.panel-toggle .icon,.restore-pill .icon{width:22px;height:22px}
+@media(max-width:1000px){.panel-toggle .toggle-label,.restore-pill .toggle-label{display:none}.workspace-header>.panel-toggle,.restore-pill{padding:0}}
+.panel-restore,.panel-restore:hover{display:flex;justify-content:flex-end;align-items:center;width:100%;height:100%;padding:0 var(--bar-pad);border:0;border-radius:inherit;background:var(--surface)}
+.workspace.panel-closed{justify-content:stretch}
+.main.panel-collapsed,.main[data-view=closed]{grid-template-rows:26px minmax(130px,1fr) 24px calc(var(--panel-bar) + 2px) 36px}
+@media(min-height:1000px){.main.panel-collapsed,.main[data-view=closed]{grid-template-rows:30px minmax(160px,1fr) 28px calc(var(--panel-bar) + 2px) 40px}}
+@media(max-height:680px){.main.panel-collapsed,.main[data-view=closed]{grid-template-rows:24px minmax(120px,1fr) 22px calc(var(--panel-bar) + 2px) 32px}}
+@media(max-width:600px){.main.panel-collapsed,.main[data-view=closed]{grid-template-rows:26px minmax(140px,1fr) 24px calc(var(--panel-bar) + 2px)}}
+@media(max-height:520px){.main.panel-collapsed,.main[data-view=closed]{grid-template-rows:26px minmax(110px,1fr) 18px calc(var(--panel-bar) + 2px)}}
+@media(max-height:430px) and (min-width:600px){.main.panel-collapsed,.main[data-view=closed]{grid-template-rows:26px minmax(0,1fr) 18px calc(var(--panel-bar) + 2px)}}
+.workspace-header>.panel-toggle{margin-left:auto!important}

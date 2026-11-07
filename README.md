@@ -1,14 +1,37 @@
-# UTAC Keryx 0.6.0
+# UTAC Keryx 0.6.1
 
-Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.0_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
+Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.1_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
 
 ## Aplicació web i fitxer local
 
 - Aplicació: https://utacub.github.io/keryx/
-- Edició descarregable: [`UTAC_Keryx_v0.6.0_local.html`](UTAC_Keryx_v0.6.0_local.html).
+- Edició descarregable: [`UTAC_Keryx_v0.6.1_local.html`](UTAC_Keryx_v0.6.1_local.html).
 - La web i l’HTML descarregable contenen la mateixa aplicació. Les dades de cada navegador i origen són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel. `index.html` és autònom; `.nojekyll` evita el processament Jekyll.
 - Per publicar una modificació: executeu `python3 build.py`, les proves indicades més avall i incorporeu els fitxers resultants a `main`. La construcció actualitza `index.html`, l’HTML descarregable i la previsualització `dist/index.html`.
+
+## Canvis de la versió 0.6.1
+
+- **Pantalla fixa també amb el text ampliat.** En finestres baixes en horitzontal (mòbil de costat, o text al 200 % en un portàtil), el missatge queda a l’esquerra i el panell a la dreta. En finestres de menys de 520 px d’alçada, els botons del peu passen a la fila superior i cap botó no queda tallat.
+- **Missatge llarg.** El quadre del missatge no creix: la lletra es redueix fins a 20 px perquè el text hi càpiga sencer. Si encara no hi cap, apareixen els botons «Línia amunt» i «Línia avall».
+- **Més frases per pàgina en pantalles petites.** Dues columnes a partir de 260 px d’amplada i targetes més baixes; en mòbils, els botons Silenci i Mode privat pugen a la fila superior. A 360 × 640 hi caben 4 frases per pàgina (abans, 1); a 390 × 844, 10. Les respostes ràpides també es paginen quan no hi caben.
+- **Panell inferior.** La barra tancada és clara, com l’oberta, i té la mateixa alçada. El botó d’amagar i mostrar té sempre la mateixa mida i és a l’extrem dret, de color verd fosc amb el text o la icona en blanc («Amagar panell» / «Mostrar panell» en pantalles amples; només icona a partir de 1000 px d’amplada o menys).
+- **Teclat físic.** El panell comença amagat quan hi ha un teclat físic. Cap API web no informa de si n’hi ha un, i per això s’usen dos indicis: un ratolí o un trackpad com a punter principal, o pulsacions reals al missatge sense un teclat de pantalla que ocupi part de la finestra. Si la persona torna a obrir o tancar el panell, l’app respecta aquesta tria durant la sessió. Amb escombratge o permanència, el panell no s’amaga.
+- Textos nous en els sis idiomes; les traduccions a euskera, gallec, anglès i francès no han estat revisades per parlants nadius.
+
+### Com s’ha fet la 0.6.1
+
+Aquest repositori encara no conté les fonts de construcció (`build.py`, `src/`, proves) que descriuen les seccions següents. La 0.6.1 s’ha obtingut aplicant `tools/patch-0.6.1/patch061.py` sobre l’HTML construït de la 0.6.0, i el resultat és reproduïble:
+
+```
+python3 tools/patch-0.6.1/patch061.py UTAC_Keryx_v0.6.0_local.html UTAC_Keryx_v0.6.1_local.html
+```
+
+Quan les fonts s’afegeixin al repositori, aquests canvis s’hi han de portar.
+
+### Validació de la 0.6.1 (7 de novembre de 2026)
+
+Chromium amb Playwright, obrint el fitxer local, a 1280 × 800, 640 × 400 (equivalent a 1280 × 800 amb text al 200 %), 768 × 1024, 390 × 844, 360 × 640 i 740 × 360, amb un missatge de 274 caràcters i les vistes Respostes, Frases i Teclat: el document no es desplaça, cap panell de conversa no té desplaçament i no hi ha errors de JavaScript. S’ha comprovat que el panell s’amaga en escriure amb tecles reals en un dispositiu tàctil emulat, que el teclat de pantalla no l’amaga i que, després de tornar-lo a obrir, no s’amaga de nou. Límits: no s’ha provat en dispositius reals ni amb teclats Bluetooth, ni amb lectors de pantalla; amb text al 200 %, algunes tecles del teclat de pantalla fan una mica menys de 24 px d’amplada; el missatge que no hi cap pot mostrar una línia tallada a la part superior.
 
 ## Canvis de la versió 0.6.0
 

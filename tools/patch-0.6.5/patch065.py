@@ -47,12 +47,20 @@ import os, json as _j
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from name_section import H, P, REFS
 J=lambda x:_j.dumps(x,ensure_ascii=False)
-sec="el('h3',{},tr(%s,%s)),"%(J(H['ca']),J(H['es']))+"".join("el('p',{},tr(%s,%s)),"%(J(p['ca']),J(p['es'])) for p in P)
-rep("el('h3',{},tr('Projecte i crèdits','Proyecto y créditos'))", sec+"el('h3',{},tr('Projecte i crèdits','Proyecto y créditos'))")
 rep("const refs=[['UTAC. (2026). LECAA Docs", "const refs=["+"".join("[%s,%s],"%(J(t),J(u)) for t,u in REFS)+"['UTAC. (2026). LECAA Docs")
 for lang in ['eu','gl','en','fr']:
     ins=J(H['ca'])+':'+J(H[lang])+','+''.join(J(p['ca'])+':'+J(p[lang])+',' for p in P)
     rep('"%s":{"'%lang,'"%s":{'%lang+ins+'"')
+
+# --- every credit and licence inside the Information window, as in «Sobre LECAA Docs» (Marc, 2026-11-07)
+from about_section import build, CSS as ABOUT_CSS
+s=build(s,H,P)
+# The credit in the footer and the version in the conversation bar go: both are now in the Information window,
+# and the version also shows next to the logo.
+rep('<span data-i18n="footer">UTAC · Universitat de Barcelona</span>','')
+rep('<span class="subdued" data-i18n="localVersion">Prototip local · 0.6.5</span>','')
+rep('content="UTAC Keryx. Prototip local de comunicador alfabètic."','content="UTAC Keryx. Comunicador alfabètic web i PWA."')
+i=s.rindex('</style>'); s=s[:i]+ABOUT_CSS+s[i:]
 
 # --- header buttons (Marc, 2026-11-07): Install shows only its icon, at the size of the other icon buttons;
 # Info looks like a button, as Settings does.

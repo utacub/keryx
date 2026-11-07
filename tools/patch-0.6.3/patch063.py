@@ -11,15 +11,15 @@ s=re.sub(r'(?<!/\* )0\.6\.2(?!:)','0.6.3',s)
 
 # --- new instructions in the editor (all six languages)
 OLD="Toca un botó de la graella per seleccionar-lo. Després mou-lo, canvia’n la mida o toca una casella buida per portar-l’hi. Parlar sempre és visible i sempre és el botó més gran."
-NEW="Arrossega un botó per moure’l, o la seva cantonada per canviar-ne la mida. També pots tocar un botó per seleccionar-lo i fer servir els controls («Mostrar controls»), o tocar una casella buida per portar-l’hi. Parlar sempre és visible i sempre és el botó més gran."
-TR={'eu':"Arrastatu botoi bat mugitzeko, edo bere izkina tamaina aldatzeko. Botoi bat ukitu eta kontrolak ere erabil ditzakezu («Erakutsi kontrolak»), edo gelaxka huts bat ukitu hara eramateko. Hitz egin beti dago ikusgai eta beti da botoirik handiena.",
-    'gl':"Arrastra un botón para movelo, ou a súa esquina para cambiar o tamaño. Tamén podes tocar un botón para seleccionalo e usar os controis («Mostrar controis»), ou tocar unha casa baleira para levalo alí. Falar sempre está visible e sempre é o botón máis grande.",
-    'en':"Drag a button to move it, or its corner to resize it. You can also tap a button to select it and use the controls (“Show controls”), or tap an empty cell to put it there. Speak is always shown and is always the largest button.",
-    'fr':"Faites glisser un bouton pour le déplacer, ou son coin pour changer sa taille. Vous pouvez aussi toucher un bouton pour le sélectionner et utiliser les commandes (« Afficher les commandes »), ou toucher une case vide pour l’y mettre. Parler est toujours visible et toujours le plus grand bouton."}
+NEW="Arrossega un botó per moure’l, o la seva cantonada per canviar-ne la mida. També pots tocar un botó i després una casella buida per portar-l’hi. Parlar sempre és visible i sempre és el botó més gran."
+TR={'eu':"Arrastatu botoi bat mugitzeko, edo bere izkina tamaina aldatzeko. Botoi bat eta gero gelaxka huts bat ere uki ditzakezu hara eramateko. Hitz egin beti dago ikusgai eta beti da botoirik handiena.",
+    'gl':"Arrastra un botón para movelo, ou a súa esquina para cambiar o tamaño. Tamén podes tocar un botón e despois unha casa baleira para levalo alí. Falar sempre está visible e sempre é o botón máis grande.",
+    'en':"Drag a button to move it, or its corner to resize it. You can also tap a button and then an empty cell to put it there. Speak is always shown and is always the largest button.",
+    'fr':"Faites glisser un bouton pour le déplacer, ou son coin pour changer sa taille. Vous pouvez aussi toucher un bouton puis une case vide pour l’y mettre. Parler est toujours visible et toujours le plus grand bouton."}
 for lang,v in TR.items():
     rep('"%s":{"'%lang,'"%s":{'%lang+json.dumps(NEW,ensure_ascii=False)+':'+json.dumps(v,ensure_ascii=False)+',"')
 rep("tr('%s','Toca un botón de la cuadrícula para seleccionarlo. Después muévelo, cambia su tamaño o toca una casilla vacía para llevarlo allí. Hablar siempre es visible y siempre es el botón más grande.')"%OLD,
-    "tr('%s','Arrastra un botón para moverlo, o su esquina para cambiar su tamaño. También puedes tocar un botón para seleccionarlo y usar los controles («Mostrar controles»), o tocar una casilla vacía para llevarlo allí. Hablar siempre es visible y siempre es el botón más grande.')"%NEW)
+    "tr('%s','Arrastra un botón para moverlo, o su esquina para cambiar su tamaño. También puedes tocar un botón y después una casilla vacía para llevarlo allí. Hablar siempre es visible y siempre es el botón más grande.')"%NEW)
 
 # --- the selected button gets a resize handle in its corner
 rep("b.dataset.key=k;grid.append(b);}","b.dataset.key=k;if(k===sel)b.append(el('i',{class:'ae-handle','aria-hidden':'true'}));grid.append(b);}")
@@ -44,20 +44,13 @@ DRAG=r""" /* 0.6.3: drag to move, drag the corner to resize. Moving onto a butto
 """
 rep(" draw();\n openDialog(tr('Edició dels botons principals'",DRAG+" draw();\n openDialog(tr('Edició dels botons principals'")
 
-# --- the tap controls start hidden behind a "Show controls" button; with scanning or dwell they start shown (Marc, 2026-11-07)
-T3={"Mostrar controls":["Erakutsi kontrolak","Mostrar controis","Show controls","Afficher les commandes"],"Amagar controls":["Ezkutatu kontrolak","Ocultar controis","Hide controls","Masquer les commandes"]}
-for i,lang in enumerate(['eu','gl','en','fr']):
-    ins=''.join(json.dumps(k,ensure_ascii=False)+':'+json.dumps(v[i],ensure_ascii=False)+',' for k,v in T3.items())
-    rep('"%s":{"'%lang,'"%s":{'%lang+ins+'"')
-rep(" const save=()=>{",
-    " if(typeof aeControlsOpen==='undefined'||aeControlsOpen===null)aeControlsOpen=prefs().access!=='direct';controls.hidden=!aeControlsOpen;\n"
-    " const ctlToggle=button('',()=>{aeControlsOpen=controls.hidden;controls.hidden=!aeControlsOpen;paintToggle();if(aeControlsOpen)controls.querySelector('button')?.focus({preventScroll:true});},'ae-toggle-controls');ctlToggle.setAttribute('aria-controls','ae-controls');controls.id='ae-controls';\n"
-    " const paintToggle=()=>{clear(ctlToggle).append(icon('down'),el('span',{},controls.hidden?tr('Mostrar controls','Mostrar controles'):tr('Amagar controls','Ocultar controles')));ctlToggle.setAttribute('aria-expanded',String(!controls.hidden));ctlToggle.classList.toggle('open',!controls.hidden);};paintToggle();\n"
-    " const save=()=>{")
+# --- the tap controls are removed: the editor is meant for touch screens (Marc, 2026-11-07). Tapping a button and then an empty cell still moves it.
 rep("kindRow,grid,el('p',{class:'ae-selected-line'},tr('Seleccionat: ','Seleccionado: '),selName),controls,status,",
-    "kindRow,grid,el('div',{class:'ae-selected-row'},el('p',{class:'ae-selected-line'},tr('Seleccionat: ','Seleccionado: '),selName),ctlToggle),controls,status,")
-rep("function actionEditor(kind=actionLayoutKind(),drafts=null,selected='speak'){","let aeControlsOpen=null;\nfunction actionEditor(kind=actionLayoutKind(),drafts=null,selected='speak'){")
+    "kindRow,grid,el('p',{class:'ae-selected-line'},tr('Seleccionat: ','Seleccionado: '),selName),status,")
 
+# drop the control buttons and the move/resize helpers only they used
+a=s.index(" const ctl=(label");b=s.index("ctl(tr('Més baix','Más bajo'),()=>resize(0,-1)));\n",a)+len("ctl(tr('Més baix','Más bajo'),()=>resize(0,-1)));\n");s=s[:a]+s[b:]
+a=s.index(" const move=(dx,dy)=>{");b=s.index(" const resize=(dw,dh)=>tryChange(L=>{L[sel][2]+=dw;L[sel][3]+=dh;});\n",a)+len(" const resize=(dw,dh)=>tryChange(L=>{L[sel][2]+=dw;L[sel][3]+=dh;});\n");s=s[:a]+s[b:]
 CSS="""
 /* 0.6.3: dragging in the editor of the main buttons */
 .ae-grid{touch-action:none;user-select:none;-webkit-user-select:none}
@@ -67,7 +60,6 @@ CSS="""
 .ae-dragging .ae-cell{border-color:var(--muted)}
 .ae-handle{position:absolute;right:0;bottom:0;width:26px;height:26px;cursor:nwse-resize;touch-action:none;border-radius:9px 0 7px 0;background:linear-gradient(135deg,transparent 0 45%,currentColor 45% 55%,transparent 55% 65%,currentColor 65% 75%,transparent 75%)}
 .ae-bottom .ae-handle{width:16px;height:16px}
-.ae-selected-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.ae-toggle-controls .icon{transition:transform .15s}.ae-toggle-controls.open .icon{transform:rotate(180deg)}
 """
 i=s.rindex('</style>'); s=s[:i]+CSS+s[i:]
 open(dst,'w',encoding='utf-8',newline='').write(s)

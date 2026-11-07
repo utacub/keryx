@@ -2,7 +2,7 @@
    Keeps the app working without a connection once it has been opened.
    The page is fetched from the network first, so a new version is used as soon as there is a connection;
    without one, the copy saved here is served. Voice downloads and other sites are not touched. */
-const VERSION = 'keryx-0.6.4';
+const VERSION = 'keryx-0.6.5';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-192.png', './icons/maskable-512.png', './icons/apple-touch-icon.png'];
 
 self.addEventListener('install', event => {

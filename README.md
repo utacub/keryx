@@ -15,6 +15,14 @@ Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior min
 - **Sense finestra de primera vegada.** La finestra «Comencem amb Keryx» ja no s’obre en entrar per primer cop: Keryx comença directament a la pantalla principal, en català, amb accés directe (tacte, ratolí o teclat). La llengua es canvia amb el botó de la capçalera, i l’accés i la veu, a Ajustos (decisió de Marc, 7 de novembre de 2026).
 - **Versió al costat del logo.** El número de versió apareix en petit a la dreta del logo, a la capçalera. La caixa del logo s’ajusta ara al dibuix, i als mòbils de 400 px o menys el logo i els espais de la capçalera s’estrenyen una mica perquè tot hi càpiga fins a 320 px.
 - **Botons de la capçalera.** «Instal·lar» mostra només la icona, amb la mida dels altres botons d’icona; el text queda com a nom accessible. «Informació» té ara aspecte de botó, com «Ajustos» (decisions de Marc, 7 de novembre de 2026).
+- **Revisió del català.** S’ha revisat tot el text en català que es veu a Keryx (botons, avisos, ajustos, ajuda, informació i frases). Correccions:
+  - la tecla de majúscules s’anomena «Maj», no «Majús»;
+  - la llista de pendents ja no inclou la instal·lació PWA, que ja està feta;
+  - s’han completat frases a què faltava un complement o un article («Fes més petit un altre botó o amaga’l», «la veu del navegador», «quan torni a obrir Keryx», «els sis idiomes», «una còpia de Keryx»);
+  - «la seva cantonada» passa a «arrossega’n la cantonada», i la lectura de frases es descriu com «en escriure un punt, un interrogant o una exclamació, o en prémer Intro»;
+  - als crèdits, «logotip de Keryx i logotip original d’UTAC, aportats per Marc Coronas» i «GPL-3.0 o posterior».
+
+  Com que el text català és també la clau de les traduccions, cada canvi s’aplica igualment als diccionaris basc, gallec, anglès i francès. El quadre «Aplicació instal·lada» que mostra Windows en instal·lar Keryx amb Edge (amb el botó «No ho permetes») és del sistema i no es pot canviar des de l’aplicació.
 - `sw.js` passa a `keryx-0.6.5`.
 
 La 0.6.5 s’obté aplicant `tools/patch-0.6.5/patch065.py` sobre l’HTML de la 0.6.4 (commit `9cfeff4`).

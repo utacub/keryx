@@ -13,6 +13,35 @@ def rep(a,b,count=1):
 s=re.sub(r'(?<!/\* )0\.6\.4(?!:)','0.6.5',s)
 rep("scheduleFitMessage();if(firstUse)welcome();\n})();",
     "scheduleFitMessage();/* 0.6.5: no first-use window; the first visit is marked as set up. */if(firstUse){firstUse=false;persist();}\n})();")
+# --- Catalan text review (Marc, 2026-11-07). Each Catalan string is also the key of the eu/gl/en/fr dictionaries,
+# so it is replaced everywhere it appears.
+def repall(a,b):
+    global s
+    assert s.count(a)>=1,a[:60]; s=s.replace(a,b)
+CA={
+ # Shift key: the Catalan label is «Maj», as «Mayús» is the Spanish one.
+ "tr('Majús','Mayús')":"tr('Maj','Mayús')",
+ '"Majús":"':'"Maj":"',
+ "Majús + Tab torna enrere":"Maj + Tab torna enrere",
+ "Pots seleccionar text amb Majús i les fletxes":"Pots seleccionar text amb Maj i les fletxes",
+ # The app can now be installed.
+ "Encara pendents: instal·lació PWA, serveis":"Encara pendents: serveis",
+ # Missing object.
+ "No queda lloc lliure. Fes més petit o amaga un altre botó.":"No queda lloc lliure. Fes més petit un altre botó o amaga’l.",
+ # Possessive with a thing; a pronoun reads better.
+ "Arrossega un botó per moure’l, o la seva cantonada per canviar-ne la mida.":"Arrossega un botó per moure’l, o arrossega’n la cantonada per canviar-ne la mida.",
+ "Llegeix la frase en fer punt, interrogació, exclamació o prémer Intro.":"Llegeix la frase en escriure un punt, un interrogant o una exclamació, o en prémer Intro.",
+ "Recuperar els esborranys quan torni a obrir":"Recuperar els esborranys quan torni a obrir Keryx",
+ "Inclou l’editor, veu del navegador i veus descarregables, presentació de text, 90 missatges":"Inclou l’editor, la veu del navegador i veus descarregables, la presentació del text, 90 missatges",
+ "No tots els sistemes ofereixen tots sis idiomes.":"No tots els sistemes ofereixen els sis idiomes.",
+ "Cal una còpia Keryx de format 1":"Cal una còpia de Keryx de format 1",
+ "Identitat gràfica aprovada: logotip Keryx i original d’UTAC aportat per Marc Coronas.":"Identitat gràfica aprovada: logotip de Keryx i logotip original d’UTAC, aportats per Marc Coronas.",
+ "llicència GPL-3.0-o-posterior per al codi":"llicència GPL-3.0 o posterior per al codi",
+}
+for a,b in CA.items(): repall(a,b)
+# Same correction in the other languages of the "still pending" list.
+for a,b in [("instalación PWA, servicios","servicios"),("PWA instalazioa, ahots","ahots"),("instalación PWA, servizos","servizos"),("PWA installation, additional","additional"),("installation PWA, services","services")]: repall(a,b)
+
 # --- header buttons (Marc, 2026-11-07): Install shows only its icon, at the size of the other icon buttons;
 # Info looks like a button, as Settings does.
 rep('<button id="info-button" class="icon-only flat" aria-haspopup="dialog"></button><button id="install-button" class="install-button" type="button" hidden></button>',

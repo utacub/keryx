@@ -1,14 +1,27 @@
-# UTAC Keryx 0.6.2
+# UTAC Keryx 0.6.3
 
-Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.2_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
+Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.3_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
 
 ## Aplicació web i fitxer local
 
 - Aplicació: https://utacub.github.io/keryx/
-- Edició descarregable: [`UTAC_Keryx_v0.6.2_local.html`](UTAC_Keryx_v0.6.2_local.html).
+- Edició descarregable: [`UTAC_Keryx_v0.6.3_local.html`](UTAC_Keryx_v0.6.3_local.html).
 - La web i l’HTML descarregable contenen la mateixa aplicació. Les dades de cada navegador i origen són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel. `index.html` és autònom; `.nojekyll` evita el processament Jekyll.
 - Per publicar una modificació: executeu `python3 build.py`, les proves indicades més avall i incorporeu els fitxers resultants a `main`. La construcció actualitza `index.html`, l’HTML descarregable i la previsualització `dist/index.html`.
+
+## Canvis de la versió 0.6.3
+
+- **Arrossegar a l’editor dels botons principals.** Un botó es mou arrossegant-lo dins la graella, i canvia de mida arrossegant la cantonada inferior dreta del botó seleccionat. Si es deixa anar sobre un botó de la mateixa mida, s’intercanvien. Mentre s’arrossega, la graella mostra on quedarà; si la posició no és vàlida (solapament, fora de la graella o un botó tan gran com Parlar), el botó es marca amb un contorn discontinu i en deixar-lo anar torna on era, amb el motiu escrit a sota.
+- **Sense botons de control.** Els botons Esquerra, Dreta, Amunt, Avall, Més ample… de la 0.6.2 s’han tret: l’editor està pensat per a pantalla tàctil i ratolí, i qui fa servir un altre accés no necessita editar la disposició (decisió de Marc, 7 de novembre de 2026). Tocar un botó i després una casella buida encara el porta allà, que és l’alternativa d’un sol toc per moure; canviar la mida només es pot fer arrossegant (W3C, 2023, criteri 2.5.7).
+
+La 0.6.3 s’obté aplicant `tools/patch-0.6.3/patch063.py` sobre l’HTML de la 0.6.2 (commit `8e2b93d`):
+
+```
+python3 tools/patch-0.6.3/patch063.py UTAC_Keryx_v0.6.2_local.html UTAC_Keryx_v0.6.3_local.html
+```
+
+Validació (7 de novembre de 2026), Chromium amb Playwright a 1280 × 800 i 390 × 844: arrossegar Aturar sobre Mostrar els intercanvia; arrossegar la cantonada canvia la mida; una mida que solaparia un altre botó es rebutja amb el motiu; sense errors de JavaScript. No s’ha provat en dispositius tàctils reals.
 
 ## Canvis de la versió 0.6.2
 

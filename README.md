@@ -1,14 +1,28 @@
-# UTAC Keryx 0.6.8
+# UTAC Keryx 0.6.9
 
-Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.8_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
+Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.9_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
 
 ## Aplicació web i fitxer local
 
 - Aplicació: https://utacub.github.io/keryx/
-- Edició descarregable: [`UTAC_Keryx_v0.6.8_local.html`](UTAC_Keryx_v0.6.8_local.html).
+- Edició descarregable: [`UTAC_Keryx_v0.6.9_local.html`](UTAC_Keryx_v0.6.9_local.html).
 - La web i l’HTML descarregable contenen la mateixa aplicació. Les dades de cada navegador i origen són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel. `index.html` és autònom; `.nojekyll` evita el processament Jekyll.
 - Per publicar una modificació: executeu `python3 build.py`, les proves indicades més avall i incorporeu els fitxers resultants a `main`. La construcció actualitza `index.html`, l’HTML descarregable i la previsualització `dist/index.html`.
+
+## Canvis de la versió 0.6.9
+
+- **Carpetes de frases.** En entrar a Frases es veu el nivell superior, amb les carpetes (les antigues categories) i el nombre de frases de cadascuna. En obrir una carpeta es veuen les seves subcarpetes i les seves frases com fins ara. Una barra mostra on ets («Frases › Carpeta › Subcarpeta») amb els botons Amunt i Editar carpeta. Es poden crear carpetes fins a tres nivells (Marc, 8 de novembre de 2026).
+- **Gestió de carpetes i frases.** Botons «Nova frase» (es desa a la carpeta oberta), «Nova carpeta» (fins al tercer nivell) i «Editar». En mode d’edició, cada carpeta té el llapis per canviar-ne el nom, moure-la dins d’una altra, ordenar-la, amagar-la o eliminar-la (el contingut passa a la carpeta superior). A l’editor de frases, «Categoria» passa a ser «Carpeta», amb el camí complet.
+- **Sense desplegable ni botó Categories.** La cerca busca a totes les carpetes visibles. Les carpetes amagades (i el que contenen) no surten al panell ni a la cerca; en mode d’edició es veuen amb vora discontínua per poder-les tornar a mostrar.
+- **Fitxes amb pàgines fixes o amb desplaçament.** Nova opció a Ajustos → Accés, «Fitxes dels panells»: «Pàgines fixes, sense desplaçament» (com fins ara) o «Llista amb desplaçament (scroll)», per a Respostes, Frases, Favorits, Historial i Documents.
+- **Graella de botons 3 × 6 amb Desar i Més.** La graella lateral passa de 2 × 6 a 3 × 6, i el grup principal inclou ara Desar frase i Més eines, que surten de l’espai d’escriptura. A sota del missatge hi ha 10 botons a la graella de 12 × 2. Les disposicions desades abans conserven els seus botons, i Desar i Més s’hi col·loquen al primer lloc lliure.
+- Les còpies de seguretat desen la carpeta superior de cada carpeta (`parent`); en importar, si una carpeta no existeix, fa un cicle o passa de tres nivells, va al nivell superior.
+- `sw.js` passa a `keryx-0.6.9`.
+
+La 0.6.9 s’obté aplicant `tools/patch-0.6.9/patch069.py` sobre l’HTML de la 0.6.8.
+
+Validació (8 de novembre de 2026), Chromium amb Playwright: el nivell superior mostra les carpetes; s’han creat dues subcarpetes i una frase al tercer nivell, i es conserven després de recarregar; al tercer nivell ja no surt «Nova carpeta»; Amunt i la cerca funcionen; amb desplaçament, el paginador s’amaga i la graella es desplaça; la graella lateral és de 3 × 6 amb 10 botons; una disposició 2 × 6 desada abans manté els botons i hi afegeix Desar i Més; en un iPhone 13 emulat no hi ha desplaçament horitzontal. Sense errors de JavaScript.
 
 ## Canvis de la versió 0.6.8
 

@@ -3,7 +3,7 @@
    The page is fetched from the network first, so a new version is used as soon as there is a connection;
    without one, the copy saved here is served. Voice downloads and other sites are not touched.
    0.7.0: the word-prediction dictionaries (lex/<lang>.json) are saved here the first time they are fetched. */
-const VERSION = 'keryx-0.7.0';
+const VERSION = 'keryx-0.7.1';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-192.png', './icons/maskable-512.png', './icons/apple-touch-icon.png'];
 
 self.addEventListener('install', event => {

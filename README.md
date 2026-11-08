@@ -1,4 +1,4 @@
-# UTAC Keryx 0.7.0
+# UTAC Keryx 0.7.1
 
 Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. És una aplicació web instal·lable (PWA): s’obre des de https://utacub.github.io/keryx/ i, un cop oberta, funciona sense connexió. No necessita clau d’API. Les descàrregues de veus i el diccionari de predicció necessiten Internet la primera vegada.
 
@@ -7,6 +7,13 @@ Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior min
 - Aplicació: https://utacub.github.io/keryx/ (instal·lable amb el botó de la part superior dreta).
 - Des de la 0.7.0 ja no hi ha edició d’un sol fitxer HTML: n’hi ha prou amb la instal·lació PWA (Marc, 8 de novembre de 2026). Les dades de cada navegador són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel: `index.html`, `sw.js`, `manifest.webmanifest`, `icons/` i `lex/`. `.nojekyll` evita el processament Jekyll.
+
+## Canvis de la versió 0.7.1
+
+- **Silenci i Mode privat a la graella de botons principals.** Surten del peu de pàgina i passen a la graella de gestió del missatge, com a botons d’icona (amb cartell en passar-hi el ratolí). Quan estan activats es veuen amb fons ple. A la graella lateral ocupen la sisena fila; a la de sota, la segona fila; i a les pantalles estretes, la columna de la dreta. Es poden moure, redimensionar o amagar amb l’editor de botons.
+- **Silenci amb l’icona d’altaveu desactivat**, sempre (abans mostrava l’altaveu normal quan no estava activat).
+- Les disposicions de botons desades abans hi afegeixen els dos botons a les primeres caselles lliures. Si no hi caben, o si s’amaguen a l’editor, es queden al peu de pàgina perquè sempre es puguin fer servir.
+- `sw.js` passa a `keryx-0.7.1`. Pedaç: `tools/patch-0.7.1/patch071.py` sobre l’`index.html` de la 0.7.0.
 
 ## Canvis de la versió 0.7.0
 

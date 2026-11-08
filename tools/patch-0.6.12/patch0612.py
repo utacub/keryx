@@ -116,6 +116,13 @@ rep("function docDelete(d){confirmDialog(","function docDelete(d,back=closeDialo
 rep("openDocId=null;closeDialog();renderWorkspace();});}","openDocId=null;closeDialog();renderWorkspace();},back);}")
 rep("button(tr('Eliminar','Eliminar'),()=>docDelete(d),'danger')","button(tr('Eliminar','Eliminar'),()=>docDelete(d,()=>editDocItem(d)),'danger')")
 
+# Panel size buttons: magnifier icons, right next to "Amagar panell" (Marc, 2026-11-08)
+rep("PATHS.folderUp='M15 18l-6-6 6-6';","PATHS.folderUp='M15 18l-6-6 6-6';PATHS.zoomIn='M17 10.5a6.5 6.5 0 1 1-13 0a6.5 6.5 0 1 1 13 0M15.2 15.2 21 21M7.5 10.5h6M10.5 7.5v6';PATHS.zoomOut='M17 10.5a6.5 6.5 0 1 1-13 0a6.5 6.5 0 1 1 13 0M15.2 15.2 21 21M7.5 10.5h6';")
+rep("const mk=(d,label,text,key)=>{const b=button(text,","const mk=(d,label,ic,key)=>{const b=button('',")
+rep("},'soft panel-zoom-btn');","},'soft panel-zoom-btn',ic);")
+rep("'A−','panel-smaller'","'zoomOut','panel-smaller'")
+rep("'A+','panel-bigger'","'zoomIn','panel-bigger'")
+
 # Opening the tab starts at the top level, like Phrases
 rep("if(id==='phrases')phraseFolder=null;","if(id==='phrases')phraseFolder=null;if(id==='documents')docFolder=null;")
 
@@ -142,6 +149,20 @@ CSS="""
 @media(max-width:600px){.doc-window{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:8px}.doc-side{flex-direction:row;flex-wrap:wrap;overflow:visible}.doc-side button{width:auto;flex:1 1 30%;min-height:42px;justify-content:center}.doc-side .spacer{display:none}.doc-window .doc-text{font-size:17px}#dialog.doc-dialog .dialog-body{padding:8px}}
 .docs-controls{flex-wrap:wrap}.docs-controls button{flex:1 1 auto}.docs-controls .folder-up{flex:0 0 auto}
 @media(max-width:600px){.library-controls.docs-controls button{grid-column:span 3}.library-controls.docs-controls button.folder-up{grid-column:span 6}#docs-grid .folder-row .history-text{display:flex}}
+
+/* 0.6.12: zoom buttons beside the panel toggle; folders drawn as folders (tab on top, thicker border), no folder icon */
+#workspace-header .panel-zoom{margin-left:auto;margin-right:0}#workspace-header>.panel-toggle{margin-left:8px!important}
+.panel-zoom .panel-zoom-btn{min-height:40px;height:40px}
+.panel-zoom-btn{display:inline-flex;align-items:center;justify-content:center;padding:4px 8px}
+.panel-zoom-btn>span:empty{display:none}
+.panel-zoom-btn .icon{width:24px;height:24px}
+.folder-card,#docs-grid .folder-row{position:relative;overflow:visible;border:2px solid var(--primary);border-radius:0 11px 11px 11px;margin-top:9px;background:var(--subtle)}
+.folder-card::before,#docs-grid .folder-row::before{content:'';position:absolute;left:-2px;top:-10px;width:38%;max-width:120px;min-width:48px;height:12px;background:var(--subtle);border:2px solid var(--primary);border-bottom:0;border-radius:8px 8px 0 0;pointer-events:none}
+.folder-card .folder-text>.icon,#docs-grid .folder-row .history-text>.icon{display:none}
+.folder-card>button,#docs-grid .folder-row>button{border-radius:0 9px 9px 9px;background:transparent}
+.folder-card>button+button,#docs-grid .folder-row>button+button{border-radius:0 9px 9px 0}
+#docs-grid .folder-row>button.history-text>span:not(.icon){position:static!important;width:auto!important;height:auto!important;overflow:hidden;clip-path:none!important}
+.folder-card.folder-hidden{border-style:dashed}.folder-card.folder-hidden::before{border-style:dashed}
 """
 i=s.rindex('</style>'); s=s[:i]+CSS+s[i:]
 

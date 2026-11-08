@@ -18,7 +18,14 @@ Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior min
 - Substitueix l’antiga opció «Completar paraules del meu banc de frases» d’Ajustos → Escriptura. Les abreviatures personals continuen igual.
 - Informació: fonts i llicències dels diccionaris i referències noves; s’ha tret l’enllaç a l’HTML portàtil. Manual de teclat: apartat 9, Predicció de text.
 - `sw.js` passa a `keryx-0.7.0` i desa els diccionaris `lex/` la primera vegada que es descarreguen. La política de seguretat (CSP) permet `connect-src 'self'`.
-- Pedaç: `tools/patch-0.7.0/patch070.py` sobre l’`index.html` de la 0.6.13 (motor a `tools/patch-0.7.0/predict.js`, traduccions a `translations.json`).
+- Pedaç: `tools/patch-0.7.0/patch070.py` sobre l’`index.html` de la 0.6.14 (motor a `tools/patch-0.7.0/predict.js`, traduccions a `translations.json`).
+
+## Canvis de la versió 0.6.14
+
+- A la finestra d’Informació s’ha tret el paràgraf «Identitat gràfica…», i la frase «Identitat gràfica aprovada…» del text de llicència, en totes les llengües. L’app ja no mostra cap nom personal com a autor de la identitat gràfica.
+- **Cartells en passar el ratolí.** Tots els botons que només mostren una icona (o un símbol com ☆ o ✎) fan aparèixer, en deixar-hi el ratolí un moment, un cartell amb el que fan («Parlar», «Més eines», «Afegir a favorits: …»). Només amb ratolí; amb el tacte no surt.
+- **Botons del missatge a la dreta per defecte.** Els perfils nous els tenen a la dreta del missatge; els perfils que encara els tenien a sota (l’opció per defecte d’abans) hi passen una vegada. Es pot tornar a triar «A sota» a Ajustos → Pantalla i es manté.
+- `sw.js` passa a `keryx-0.6.14`. Pedaç: `tools/patch-0.6.14/patch0614.py` sobre l’HTML de la 0.6.13.
 
 ## Canvis de la versió 0.6.13
 

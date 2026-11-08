@@ -1,4 +1,4 @@
-# Applies the UTAC Keryx 0.7.0 change to the built index.html of 0.6.13 (Marc, 2026-11-08):
+# Applies the UTAC Keryx 0.7.0 change to the built index.html of 0.6.14 (Marc, 2026-11-08):
 # word prediction for physical keyboards. An option of Settings -> Access, off by default.
 # - Engine: tools/patch-0.7.0/predict.js (inlined), lexicons lex/<lang>.json from tools/lexicon/build_lexicon.py.
 # - Numbered suggestions under the message; Tab inserts the first, F1-F5 any of them, Esc hides them; all keys can be changed.
@@ -6,7 +6,7 @@
 #   'utac.keryx.predict.v1'; words outside the vocabulary are proposed after two uses; learned words can be forgotten.
 # - The old "Complete words from my phrase bank" option (Writing tab) is replaced: phrases now feed the new engine.
 # - No single-file edition any more (Marc, 2026-11-08): the app is the web/PWA; the portable HTML link is removed.
-# Usage: python3 patch070.py index.html(0.6.13) index.html(0.7.0)
+# Usage: python3 patch070.py index.html(0.6.14) index.html(0.7.0)
 import sys, re, json, os
 src, dst = sys.argv[1], sys.argv[2]
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -14,7 +14,7 @@ s = open(src, encoding='utf-8', newline='').read()
 def rep(a, b, count=1):
     global s
     n = s.count(a); assert n == count, (a[:90], n); s = s.replace(a, b)
-s = re.sub(r'(?<!/\* )0\.6\.13(?![:\d])', '0.7.0', s)
+s = re.sub(r'(?<!/\* )0\.6\.14(?![:\d])', '0.7.0', s)
 
 # the lexicons are fetched from the same origin
 rep("connect-src blob: https://cdn.jsdelivr.net", "connect-src 'self' blob: https://cdn.jsdelivr.net")

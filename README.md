@@ -1,14 +1,19 @@
-# UTAC Keryx 0.6.13
+# UTAC Keryx 0.6.14
 
-Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.13_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
+Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.14_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
 
 ## Aplicació web i fitxer local
 
 - Aplicació: https://utacub.github.io/keryx/
-- Edició descarregable: [`UTAC_Keryx_v0.6.13_local.html`](UTAC_Keryx_v0.6.13_local.html).
+- Edició descarregable: [`UTAC_Keryx_v0.6.14_local.html`](UTAC_Keryx_v0.6.14_local.html).
 - La web i l’HTML descarregable contenen la mateixa aplicació. Les dades de cada navegador i origen són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel. `index.html` és autònom; `.nojekyll` evita el processament Jekyll.
 - Per publicar una modificació: executeu `python3 build.py`, les proves indicades més avall i incorporeu els fitxers resultants a `main`. La construcció actualitza `index.html`, l’HTML descarregable i la previsualització `dist/index.html`.
+
+## Canvis de la versió 0.6.14
+
+- A la finestra d’Informació s’ha tret el paràgraf «Identitat gràfica…», i la frase «Identitat gràfica aprovada…» del text de llicència, en totes les llengües. L’app ja no mostra cap nom personal com a autor de la identitat gràfica.
+- `sw.js` passa a `keryx-0.6.14`. Pedaç: `tools/patch-0.6.14/patch0614.py` sobre l’HTML de la 0.6.13.
 
 ## Canvis de la versió 0.6.13
 

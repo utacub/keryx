@@ -1,4 +1,4 @@
-# UTAC Keryx 0.7.1
+# UTAC Keryx 0.7.2
 
 Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. És una aplicació web instal·lable (PWA): s’obre des de https://utacub.github.io/keryx/ i, un cop oberta, funciona sense connexió. No necessita clau d’API. Les descàrregues de veus i el diccionari de predicció necessiten Internet la primera vegada.
 
@@ -7,6 +7,17 @@ Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior min
 - Aplicació: https://utacub.github.io/keryx/ (instal·lable amb el botó de la part superior dreta).
 - Des de la 0.7.0 ja no hi ha edició d’un sol fitxer HTML: n’hi ha prou amb la instal·lació PWA (Marc, 8 de novembre de 2026). Les dades de cada navegador són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel: `index.html`, `sw.js`, `manifest.webmanifest`, `icons/` i `lex/`. `.nojekyll` evita el processament Jekyll.
+
+## Canvis de la versió 0.7.2
+
+Correccions de l’auditoria final abans de publicar (8 de novembre de 2026).
+
+- **Predicció: les tecles F ja no arriben al navegador.** Si una tecla F assignada a una proposta (per defecte F1–F5) es prem quan aquella proposta no es mostra, ara no fa res. Abans, amb 3 propostes visibles, F4 i F5 passaven al navegador: F5 recarregava la pàgina i es perdia el missatge; F1 obria l’ajuda del navegador i F3, la cerca.
+- **Capçalera als mòbils.** El logotip s’ajusta a l’amplada de la finestra i els botons sempre hi caben. Abans el botó Instal·lar quedava tallat a 412 px (molts mòbils Android), a 352–356 px i a 300–312 px.
+- **Noms accessibles.** Els botons Amagar panell i Mostrar panell es diuen igual que el text que es veu, i el botó d’idioma inclou el codi visible (CA, ES…), perquè el control per veu els trobi (WCAG 2.5.3).
+- **Traducció.** A Informació, «Claude (0.6.1 i posteriors)» es tradueix en basc, gallec, anglès i francès.
+- **Service worker.** La instal·lació demana els fitxers sense passar per la memòria cau HTTP del navegador, i cada visita amb connexió actualitza les dues còpies desades de la pàgina (`./` i `./index.html`). `sw.js` passa a `keryx-0.7.2`.
+- Pedaç: `tools/patch-0.7.2/patch072.py` sobre l’`index.html` de la 0.7.1.
 
 ## Canvis de la versió 0.7.1
 

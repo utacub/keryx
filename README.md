@@ -1,14 +1,27 @@
-# UTAC Keryx 0.6.7
+# UTAC Keryx 0.6.8
 
-Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.7_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
+Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.8_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
 
 ## Aplicació web i fitxer local
 
 - Aplicació: https://utacub.github.io/keryx/
-- Edició descarregable: [`UTAC_Keryx_v0.6.7_local.html`](UTAC_Keryx_v0.6.7_local.html).
+- Edició descarregable: [`UTAC_Keryx_v0.6.8_local.html`](UTAC_Keryx_v0.6.8_local.html).
 - La web i l’HTML descarregable contenen la mateixa aplicació. Les dades de cada navegador i origen són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel. `index.html` és autònom; `.nojekyll` evita el processament Jekyll.
 - Per publicar una modificació: executeu `python3 build.py`, les proves indicades més avall i incorporeu els fitxers resultants a `main`. La construcció actualitza `index.html`, l’HTML descarregable i la previsualització `dist/index.html`.
+
+## Canvis de la versió 0.6.8
+
+- **Sense commutadors.** S’han tret l’escombratge amb un i amb dos commutadors i totes les opcions que hi anaven lligades: ordre i interval d’escombratge, tecles de seleccionar i d’avançar, el ressaltat i l’avís de tecles reservades a les dreceres. Els mètodes d’accés són ara «Tacte, ratolí o teclat físic» i «Punter amb permanència». Els perfils que tenien un escombratge desat passen a l’accés directe (Marc, 8 de novembre de 2026).
+- **Sense teclat en pantalla propi.** S’han tret la pestanya Teclat del panell, el teclat dels panells emergents (i el botó Teclat del peu) i les opcions «Fer servir el teclat de pantalla propi» i «Disposició del teclat propi». Keryx no posa mai `inputmode="none"`: el missatge i tots els camps reben sempre el teclat físic connectat o el teclat en pantalla del sistema operatiu, amb la seva distribució, accents, tecles mortes i AltGr (Marc, 8 de novembre de 2026).
+- **Qualsevol teclat escriu al missatge.** Si el focus és en un botó de la pantalla principal i es prem una tecla de caràcter (també des d’un teclat en pantalla del sistema que enviï tecles), el missatge recupera el focus i hi entra el caràcter. Espai i Intro continuen activant botons; els panells emergents, els menús i les llistes mantenen les seves tecles. Després d’una acció, el cursor torna al missatge també en mode de permanència. Ctrl+Z i Ctrl+Y no es confonen amb AltGr.
+- **Manual d’accés amb teclat a Ajustos → Accés.** El manual ja no és a la Informació: ara és al final de l’apartat Accés dels ajustos. El botó «Manual de teclat» de les dreceres porta a aquest punt. L’apartat 3 enumera les pestanyes actuals i l’apartat 8 explica l’ús de qualsevol teclat.
+- **Informació.** «Origen i institucions» va ara just a sota de «Per què es diu Keryx». Els textos de la idea, de com començar i de l’abast ja no parlen de commutadors ni de teclat propi. Els textos nous es tradueixen a l’èuscar, el gallec, l’anglès i el francès.
+- `sw.js` passa a `keryx-0.6.8`.
+
+La 0.6.8 s’obté aplicant `tools/patch-0.6.8/patch068.py` sobre l’HTML de la 0.6.7 (commit `5bb9f49`).
+
+Validació (8 de novembre de 2026), Chromium amb Playwright: el panell té cinc pestanyes (Respostes, Favorits, Frases, Historial, Documents); el missatge té `inputmode="text"`; amb el focus al botó Ajustos, escriure «Hola, àé ç» ho posa al missatge; Espai sobre Informació l’obre; un perfil desat amb `access: scan1` i `keyboard: true` s’obre en accés directe; la permanència obre els ajustos i Esc la pausa; «Manual de teclat» porta al manual al final d’Accés; a la Informació l’ordre és La idea, Per què es diu Keryx, Origen i institucions, Com començar; textos nous comprovats en català, castellà, èuscar, gallec, anglès i francès; en un iPhone 13 emulat el missatge rep el focus amb `inputmode="text"`. Sense errors de JavaScript.
 
 ## Canvis de la versió 0.6.7
 

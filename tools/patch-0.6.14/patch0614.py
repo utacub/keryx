@@ -2,6 +2,7 @@
 # the "Identitat gràfica…" paragraph is removed from the Information window, and Marc's name no longer appears
 # anywhere in the app (the "Identitat gràfica aprovada…" sentence is also removed from the licence text, in every language).
 # Also: every icon-only button shows an information label when the mouse rests on it (Marc, 2026-11-08).
+# Also: the main message buttons default to the right of the message instead of below; profiles still on 'bottom' move to 'right' once (Marc, 2026-11-08).
 # Usage: python3 patch0614.py UTAC_Keryx_v0.6.13_local.html UTAC_Keryx_v0.6.14_local.html
 import sys, re
 src,dst=sys.argv[1],sys.argv[2]
@@ -51,5 +52,11 @@ CSS="""
 .hover-tip[hidden]{display:none}
 """
 i=s.rindex('</style>'); s=s[:i]+CSS+s[i:]
+
+# Message buttons on the right by default; existing 'bottom' profiles move once (settings.actionsDefault=2 marks it done)
+rep("actionsPosition:'bottom',panelScroll:true,","actionsPosition:'right',actionsDefault:2,panelScroll:true,")
+rep("readScope:['all','selection','last']}))s[k]=choice(raw[k],a,s[k]);",
+    "readScope:['all','selection','last']}))s[k]=choice(raw[k],a,s[k]);\n    if(raw.actionsDefault!==2&&s.actionsPosition==='bottom')s.actionsPosition='right';s.actionsDefault=2;")
+s=s.replace("p.actionsPosition||'bottom'","p.actionsPosition||'right'").replace("prefs().actionsPosition||'bottom'","prefs().actionsPosition||'right'")
 open(dst,'w',encoding='utf-8',newline='').write(s)
 print('ok',dst)

@@ -13,6 +13,7 @@ Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior min
 ## Canvis de la versió 0.6.14
 
 - A la finestra d’Informació s’ha tret el paràgraf «Identitat gràfica…», i la frase «Identitat gràfica aprovada…» del text de llicència, en totes les llengües. L’app ja no mostra cap nom personal com a autor de la identitat gràfica.
+- **Cartells en passar el ratolí.** Tots els botons que només mostren una icona (o un símbol com ☆ o ✎) fan aparèixer, en deixar-hi el ratolí un moment, un cartell amb el que fan («Parlar», «Més eines», «Afegir a favorits: …»). Només amb ratolí; amb el tacte no surt.
 - `sw.js` passa a `keryx-0.6.14`. Pedaç: `tools/patch-0.6.14/patch0614.py` sobre l’HTML de la 0.6.13.
 
 ## Canvis de la versió 0.6.13

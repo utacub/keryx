@@ -1,14 +1,19 @@
-# UTAC Keryx 0.6.10
+# UTAC Keryx 0.6.11
 
-Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.10_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
+Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.11_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
 
 ## Aplicació web i fitxer local
 
 - Aplicació: https://utacub.github.io/keryx/
-- Edició descarregable: [`UTAC_Keryx_v0.6.10_local.html`](UTAC_Keryx_v0.6.10_local.html).
+- Edició descarregable: [`UTAC_Keryx_v0.6.11_local.html`](UTAC_Keryx_v0.6.11_local.html).
 - La web i l’HTML descarregable contenen la mateixa aplicació. Les dades de cada navegador i origen són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel. `index.html` és autònom; `.nojekyll` evita el processament Jekyll.
 - Per publicar una modificació: executeu `python3 build.py`, les proves indicades més avall i incorporeu els fitxers resultants a `main`. La construcció actualitza `index.html`, l’HTML descarregable i la previsualització `dist/index.html`.
+
+## Canvis de la versió 0.6.11
+
+- **Sense «Editar carpeta» a la barra de la carpeta.** Amb els botons d’edició de cada pestanya ja no cal: una carpeta s’edita des de la carpeta superior, amb el mode d’edició i el llapis de la carpeta (Marc, 8 de novembre de 2026).
+- `sw.js` passa a `keryx-0.6.11`. Pedaç: `tools/patch-0.6.11/patch0611.py` sobre l’HTML de la 0.6.10.
 
 ## Canvis de la versió 0.6.10
 

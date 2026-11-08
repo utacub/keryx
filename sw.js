@@ -4,7 +4,7 @@
    without one, the copy saved here is served. Voice downloads and other sites are not touched.
    0.7.0: the word-prediction dictionaries (lex/<lang>.json) are saved here the first time they are fetched.
    0.7.2: the install step skips the browser's HTTP cache, and each online visit refreshes both saved copies of the page. */
-const VERSION = 'keryx-0.7.2';
+const VERSION = 'keryx-0.7.3';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-192.png', './icons/maskable-512.png', './icons/apple-touch-icon.png'];
 
 self.addEventListener('install', event => {

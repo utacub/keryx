@@ -1,4 +1,4 @@
-# UTAC Keryx 0.7.2
+# UTAC Keryx 0.7.3
 
 Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. És una aplicació web instal·lable (PWA): s’obre des de https://utacub.github.io/keryx/ i, un cop oberta, funciona sense connexió. No necessita clau d’API. Les descàrregues de veus i el diccionari de predicció necessiten Internet la primera vegada.
 
@@ -7,6 +7,12 @@ Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior min
 - Aplicació: https://utacub.github.io/keryx/ (instal·lable amb el botó de la part superior dreta).
 - Des de la 0.7.0 ja no hi ha edició d’un sol fitxer HTML: n’hi ha prou amb la instal·lació PWA (Marc, 8 de novembre de 2026). Les dades de cada navegador són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel: `index.html`, `sw.js`, `manifest.webmanifest`, `icons/` i `lex/`. `.nojekyll` evita el processament Jekyll.
+
+## Canvis de la versió 0.7.3
+
+- Als mòbils (pantalla tàctil amb el costat curt de 600 px o menys), els botons de gestió del missatge surten per defecte a sota del missatge. Tauletes i ordinadors els mantenen a la dreta.
+- Els perfils que ja existien en un mòbil passen una sola vegada a la posició de sota. Després, la posició triada a Opcions es respecta.
+- Pedaç aplicat: `tools/patch-0.7.3/patch073.py`.
 
 ## Canvis de la versió 0.7.2
 

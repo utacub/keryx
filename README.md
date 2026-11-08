@@ -1,14 +1,24 @@
-# UTAC Keryx 0.6.14
+# UTAC Keryx 0.7.0
 
-Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.14_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
+Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. És una aplicació web instal·lable (PWA): s’obre des de https://utacub.github.io/keryx/ i, un cop oberta, funciona sense connexió. No necessita clau d’API. Les descàrregues de veus i el diccionari de predicció necessiten Internet la primera vegada.
 
-## Aplicació web i fitxer local
+## Aplicació web
 
-- Aplicació: https://utacub.github.io/keryx/
-- Edició descarregable: [`UTAC_Keryx_v0.6.14_local.html`](UTAC_Keryx_v0.6.14_local.html).
-- La web i l’HTML descarregable contenen la mateixa aplicació. Les dades de cada navegador i origen són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
-- Publicació amb GitHub Pages des de la branca `main`, carpeta arrel. `index.html` és autònom; `.nojekyll` evita el processament Jekyll.
-- Per publicar una modificació: executeu `python3 build.py`, les proves indicades més avall i incorporeu els fitxers resultants a `main`. La construcció actualitza `index.html`, l’HTML descarregable i la previsualització `dist/index.html`.
+- Aplicació: https://utacub.github.io/keryx/ (instal·lable amb el botó de la part superior dreta).
+- Des de la 0.7.0 ja no hi ha edició d’un sol fitxer HTML: n’hi ha prou amb la instal·lació PWA (Marc, 8 de novembre de 2026). Les dades de cada navegador són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
+- Publicació amb GitHub Pages des de la branca `main`, carpeta arrel: `index.html`, `sw.js`, `manifest.webmanifest`, `icons/` i `lex/`. `.nojekyll` evita el processament Jekyll.
+
+## Canvis de la versió 0.7.0
+
+- **Predicció de text amb teclat físic**, a Ajustos → Accés, desactivada per defecte. Sota el missatge apareixen fins a 5 propostes numerades (3 per defecte): completa la paraula que s’escriu i, després d’un espai o d’un article apostrofat (l’, d’), proposa la paraula següent. Tab insereix la primera i F1–F5 cadascuna, d’una sola pulsació i amb un espai darrere; un signe de puntuació escrit tot seguit ocupa el lloc d’aquest espai. Esc amaga les propostes fins que es torna a escriure. Les tecles es poden canviar i no poden coincidir amb les dreceres del perfil.
+- Per defecte només es mostra mentre s’escriu amb un teclat físic (els teclats en pantalla del sistema ja tenen predicció); l’opció «Sempre» la mostra també amb el teclat en pantalla.
+- **Aprèn de la persona**: compta paraules, parelles i tríades dels missatges que es fan parlar, amb un oblit lent perquè pesi més l’ús recent. No aprèn en mode privat. Una paraula que no és al diccionari es proposa després de dos usos. Es desa per perfil i llengua a `utac.keryx.predict.v1` (aquest dispositiu); «Paraules apreses» permet oblidar-ne o tornar-les a proposar, i «Esborrar el que ha après» ho buida. Les frases desades també alimenten les propostes.
+- **Sis llengües**: diccionaris a `lex/<llengua>.json`, generats amb `tools/lexicon/build_lexicon.py`. Català, castellà, anglès i francès: freqüències de wordfreq 3.1 (CC BY-SA 4.0) i parelles de paraules dels arbres sintàctics Universal Dependencies (AnCora, CC BY 4.0; English-EWT, French-Rhapsodie i French-ParisStories, CC BY-SA 4.0). Basc i gallec: freqüències de FrequencyWords 2018 (OpenSubtitles, CC BY-SA 4.0), sense parelles de paraules, perquè no hi ha cap corpus compatible de llicència lliure (els d’UD són no comercials); la paraula següent s’hi proposa a mesura que aprèn.
+- Estalvi de tecles mesurat amb frases que el model no ha vist (100 frases de prova UD, 3 propostes): català 44 %, castellà 40 %, anglès 43 %, francès 40 %, gallec 29 % (sense aprenentatge); el català puja al 47 % mentre aprèn de les mateixes 150 frases a mesura que s’escriuen. Uns 0,6 ms per tecla. Mesura: `tools/lexicon/keystroke_savings.js`.
+- Substitueix l’antiga opció «Completar paraules del meu banc de frases» d’Ajustos → Escriptura. Les abreviatures personals continuen igual.
+- Informació: fonts i llicències dels diccionaris i referències noves; s’ha tret l’enllaç a l’HTML portàtil. Manual de teclat: apartat 9, Predicció de text.
+- `sw.js` passa a `keryx-0.7.0` i desa els diccionaris `lex/` la primera vegada que es descarreguen. La política de seguretat (CSP) permet `connect-src 'self'`.
+- Pedaç: `tools/patch-0.7.0/patch070.py` sobre l’`index.html` de la 0.6.14 (motor a `tools/patch-0.7.0/predict.js`, traduccions a `translations.json`).
 
 ## Canvis de la versió 0.6.14
 

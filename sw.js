@@ -1,8 +1,9 @@
 /* UTAC Keryx · service worker. GPL-3.0-or-later.
    Keeps the app working without a connection once it has been opened.
    The page is fetched from the network first, so a new version is used as soon as there is a connection;
-   without one, the copy saved here is served. Voice downloads and other sites are not touched. */
-const VERSION = 'keryx-0.6.14';
+   without one, the copy saved here is served. Voice downloads and other sites are not touched.
+   0.7.0: the word-prediction dictionaries (lex/<lang>.json) are saved here the first time they are fetched. */
+const VERSION = 'keryx-0.7.0';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-192.png', './icons/maskable-512.png', './icons/apple-touch-icon.png'];
 
 self.addEventListener('install', event => {
@@ -26,6 +27,13 @@ self.addEventListener('fetch', event => {
       if (res.ok && isApp) { const copy = res.clone(); caches.open(VERSION).then(c => c.put('./index.html', copy)); }
       return res;
     }).catch(() => caches.match(req, { ignoreSearch: true }).then(hit => hit || caches.match('./index.html'))));
+    return;
+  }
+  if (url.pathname.includes('/lex/')) {
+    event.respondWith(caches.match(req, { ignoreSearch: true }).then(hit => hit || fetch(req).then(res => {
+      if (res.ok) { const copy = res.clone(); caches.open(VERSION).then(c => c.put(req, copy)); }
+      return res;
+    })));
     return;
   }
   event.respondWith(caches.match(req, { ignoreSearch: true }).then(hit => hit || fetch(req)));

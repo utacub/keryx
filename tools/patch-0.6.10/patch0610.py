@@ -40,6 +40,13 @@ rep("$('workspace-header').hidden=!panelOpen;",
     "const minus=mk(-0.1,tr('Elements del panell més petits','Elementos del panel más pequeños'),'A−','panel-smaller'),plus=mk(0.1,tr('Elements del panell més grans','Elementos del panel más grandes'),'A+','panel-bigger');"
     "minus.setAttribute('aria-disabled',String(now<=0.7));plus.setAttribute('aria-disabled',String(now>=1.6));z.append(minus,plus);}")
 
+# Same edit pattern in every tab: pencil + "Editar <what>" and the edit-mode notice (Marc, 2026-11-08)
+rep(":innerWidth<=600?tr('Editar','Editar'):activeView==='phrases'?tr('Editar frases i carpetes','Editar frases y carpetas'):tr('Editar frases','Editar frases')",
+    ":innerWidth<=600?tr('Editar','Editar'):activeView==='favorites'?tr('Editar favorits','Editar favoritos'):query.trim()?tr('Editar frases','Editar frases'):!phraseFolder?tr('Editar carpetes','Editar carpetas'):profile().categories.some(c=>c.parent===phraseFolder)?tr('Editar frases i carpetes','Editar frases y carpetas'):tr('Editar frases','Editar frases')")
+rep("button(tr('Personalitzar','Personalizar'),manageQuick,'flat')","button(innerWidth<=600?tr('Editar','Editar'):tr('Editar respostes','Editar respuestas'),manageQuick,'','edit')")
+s=s.replace("tr('Mode d’edició: toca una frase o una carpeta per canviar-la, moure-la o eliminar-la. Prem «Acabar edició» per tornar a fer-les servir.','Modo de edición: toca una frase o una carpeta para cambiarla, moverla o eliminarla. Pulsa «Terminar edición» para volver a usarlas.')",
+            "tr('Mode d’edició: toca un element per canviar-lo, moure’l o eliminar-lo. Prem «Acabar edició» per tornar a fer-los servir.','Modo de edición: toca un elemento para cambiarlo, moverlo o eliminarlo. Pulsa «Terminar edición» para volver a usarlos.')")
+
 CSS="""
 /* 0.6.10: panel size buttons and Up button in the toolbar row */
 .panel-zoom{display:flex;gap:6px;margin-left:auto;margin-right:8px;flex-shrink:0}
@@ -54,7 +61,10 @@ i=s.rindex('</style>'); s=s[:i]+CSS+s[i:]
 T={
 "Editar frases i carpetes":["Editatu esaldiak eta karpetak","Editar frases e cartafoles","Edit phrases and folders","Modifier les phrases et les dossiers"],
 "Editar frases":["Editatu esaldiak","Editar frases","Edit phrases","Modifier les phrases"],
-"Mode d’edició: toca una frase o una carpeta per canviar-la, moure-la o eliminar-la. Prem «Acabar edició» per tornar a fer-les servir.":["Edizio modua: ukitu esaldi edo karpeta bat aldatzeko, mugitzeko edo ezabatzeko. Sakatu «Amaitu edizioa» berriro erabiltzeko.","Modo de edición: toca unha frase ou un cartafol para cambialo, movelo ou eliminalo. Preme «Rematar edición» para volver usalos.","Edit mode: tap a phrase or a folder to change, move or delete it. Press “Finish editing” to use them again.","Mode modification : touchez une phrase ou un dossier pour le modifier, le déplacer ou le supprimer. Appuyez sur « Terminer la modification » pour les utiliser à nouveau."],
+"Mode d’edició: toca un element per canviar-lo, moure’l o eliminar-lo. Prem «Acabar edició» per tornar a fer-los servir.":["Edizio modua: ukitu elementu bat aldatzeko, mugitzeko edo ezabatzeko. Sakatu «Amaitu edizioa» berriro erabiltzeko.","Modo de edición: toca un elemento para cambialo, movelo ou eliminalo. Preme «Rematar edición» para volver usalos.","Edit mode: tap an item to change, move or delete it. Press “Finish editing” to use them again.","Mode modification : touchez un élément pour le modifier, le déplacer ou le supprimer. Appuyez sur « Terminer la modification » pour les utiliser à nouveau."],
+"Editar favorits":["Editatu gogokoak","Editar favoritos","Edit favourites","Modifier les favoris"],
+"Editar carpetes":["Editatu karpetak","Editar cartafoles","Edit folders","Modifier les dossiers"],
+"Editar respostes":["Editatu erantzunak","Editar respostas","Edit replies","Modifier les réponses"],
 "Mida dels elements del panell":["Paneleko elementuen tamaina","Tamaño dos elementos do panel","Size of the panel items","Taille des éléments du panneau"],
 "Mida del panell: ":["Panelaren tamaina: ","Tamaño do panel: ","Panel size: ","Taille du panneau : "],
 "Elements del panell més petits":["Paneleko elementu txikiagoak","Elementos do panel máis pequenos","Smaller panel items","Éléments du panneau plus petits"],

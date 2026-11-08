@@ -12,9 +12,12 @@ Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior min
 
 Correccions de l’auditoria final abans de publicar (8 de novembre de 2026).
 
+- **Frases inicials en sis llengües.** Les 90 frases d’exemple, les respostes ràpides i les 15 carpetes tenen ara text en basc, gallec, anglès i francès (abans només en català i castellà, i en aquestes quatre llengües les carpetes sortien buides). Traduccions a `tools/patch-0.7.2/phrases.tsv`; en francès es fa servir «vous» amb les persones desconegudes. La frase «Prefereixo parlar en català» s’adapta a la llengua pròpia de cada versió. Cal una revisió nativa del basc i del gallec.
+- Els perfils desats abans reben aquests textos a les frases i carpetes inicials que conserven el text català original; les que s’han editat no es toquen. També en importar una còpia.
+- **Primera obertura en la llengua del navegador.** Si el navegador està en basc, gallec, castellà, anglès o francès, Keryx s’obre en aquesta llengua (interfície, missatge i nom del perfil). Si no coincideix amb cap de les sis, en català. No canvia res als perfils que ja existeixen.
 - **Predicció: les tecles F ja no arriben al navegador.** Si una tecla F assignada a una proposta (per defecte F1–F5) es prem quan aquella proposta no es mostra, ara no fa res. Abans, amb 3 propostes visibles, F4 i F5 passaven al navegador: F5 recarregava la pàgina i es perdia el missatge; F1 obria l’ajuda del navegador i F3, la cerca.
 - **Capçalera als mòbils.** El logotip s’ajusta a l’amplada de la finestra i els botons sempre hi caben. Abans el botó Instal·lar quedava tallat a 412 px (molts mòbils Android), a 352–356 px i a 300–312 px.
-- **Noms accessibles.** Els botons Amagar panell i Mostrar panell es diuen igual que el text que es veu, i el botó d’idioma inclou el codi visible (CA, ES…), perquè el control per veu els trobi (WCAG 2.5.3).
+- **Noms accessibles.** Els botons Amagar panell i Mostrar panell es diuen igual que el text que es veu, i el botó d’idioma inclou el codi visible (CA, ES…) al final del nom, perquè el control per veu els trobi (WCAG 2.5.3).
 - **Traducció.** A Informació, «Claude (0.6.1 i posteriors)» es tradueix en basc, gallec, anglès i francès.
 - **Service worker.** La instal·lació demana els fitxers sense passar per la memòria cau HTTP del navegador, i cada visita amb connexió actualitza les dues còpies desades de la pàgina (`./` i `./index.html`). `sw.js` passa a `keryx-0.7.2`.
 - Pedaç: `tools/patch-0.7.2/patch072.py` sobre l’`index.html` de la 0.7.1.

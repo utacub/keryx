@@ -6,6 +6,9 @@
 # - Accessible names of the panel buttons and the language button contain their visible text (WCAG 2.5.3).
 # - Information: «Claude (0.6.1 i posteriors)» is translated in Basque, Galician, English and French.
 # - Version 0.7.2, 8 November 2026, in every language.
+# - Starter content in all six languages: the 90 phrases (phrases.tsv) and the 15 folders now have Basque, Galician,
+#   English and French texts. Saved profiles get them for phrases and folders whose Catalan text is unchanged.
+# - First visit: the interface and message language follow the browser language (Catalan if none of the six matches).
 # Usage: python3 patch072.py index.html index.html.new
 import sys, re, json
 src,dst=sys.argv[1],sys.argv[2]
@@ -31,7 +34,7 @@ rep("const P=prefs().predict;if(!P.enabled||!predictLast.length||$('suggestions'
 
 # Accessible names include the visible text
 rep("trigger.setAttribute('aria-label',tr('Idioma','Idioma')+': '+languageName(prefs().lang));",
-    "trigger.setAttribute('aria-label',tr('Idioma','Idioma')+': '+languageName(prefs().lang)+' ('+prefs().lang.toUpperCase()+')');")
+    "trigger.setAttribute('aria-label',tr('Idioma','Idioma')+': '+languageName(prefs().lang)+', '+prefs().lang.toUpperCase());")
 rep("toggle.setAttribute('aria-label',tr('Minimitzar el panell inferior','Minimizar el panel inferior'));toggle.title=toggle.getAttribute('aria-label');",
     "toggle.setAttribute('aria-label',tr('Amagar panell','Ocultar panel'));toggle.title=tr('Minimitzar el panell inferior','Minimizar el panel inferior');")
 rep("restore.setAttribute('aria-label',tr('Desplegar el panell inferior','Desplegar el panel inferior'));restore.title=restore.getAttribute('aria-label');",
@@ -50,5 +53,38 @@ i=s.index('const KeryxI18n=(()=>{const dictionaries=')+len('const KeryxI18n=(()=
 for li,lang in enumerate(['eu','gl','en','fr']):
     key='"'+lang+'":{'; k=s.index(key,i)+len(key)
     s=s[:k]+''.join(json.dumps(ca,ensure_ascii=False)+':'+json.dumps(v[li],ensure_ascii=False)+',' for ca,v in T.items())+s[k:]
+# Starter phrases and folders in Basque, Galician, English and French
+import os
+here=os.path.dirname(os.path.abspath(__file__))
+rows={}
+for line in open(os.path.join(here,'phrases.tsv'),encoding='utf-8'):
+    line=line.rstrip('\n')
+    if not line: continue
+    pid,eu,gl,en,fr=line.split('\t'); rows[pid]={'eu':eu,'gl':gl,'en':en,'fr':fr}
+tag='<script id="keryx-data" type="application/json">'
+a=s.index(tag)+len(tag); b=s.index('</script>',a)
+data=json.loads(s[a:b])
+dk=s.index('const KeryxI18n=(()=>{const dictionaries=')+len('const KeryxI18n=(()=>{const dictionaries=')
+dicts=json.loads(s[dk:s.index('};return {dictionaries',dk)+1])
+for c in data['categories']:
+    for lang in ['eu','gl','en','fr']:
+        c['texts'][lang]=dicts[lang][c['texts']['ca']]
+assert len(rows)==len(data['phrases'])==90
+for p in data['phrases']:
+    p['texts'].update(rows[p['id']])
+s=s[:a]+json.dumps(data,ensure_ascii=False)+s[b:]
+
+# Saved profiles: fill the new languages where the starter phrase or folder keeps its original Catalan text
+rep("function newStore(){const p=freshProfile();return{format:C.FORMAT,version:1,active:p.id,profiles:[p]};}\nlet db=newStore();",
+    "function newStore(){const p=freshProfile();return{format:C.FORMAT,version:1,active:p.id,profiles:[p]};}\n"
+    "/* 0.7.2: starter phrases and folders saved before they had six languages get the missing texts, unless their Catalan text was edited. */\n"
+    "function starterTexts(store){const maps=[[new Map(DATA.phrases.map(x=>[x.id,x])),'phrases'],[new Map(DATA.categories.map(x=>[x.id,x])),'categories']];for(const pr of store.profiles)for(const [map,key] of maps)for(const x of pr[key]||[]){const d=map.get(x.id);if(!d||!x.texts||x.texts.ca!==d.texts.ca)continue;for(const [l,v] of Object.entries(d.texts))if(!x.texts[l])x.texts[l]=v;}return store;}\n"
+    "/* 0.7.2: on the first visit the interface follows the browser language. */\n"
+    "function browserLanguage(){const list=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];for(const t of list){const l=String(t).toLowerCase().split('-')[0];if(C.LANGUAGE_IDS.includes(l))return l;}return 'ca';}\n"
+    "let db=newStore();\n"
+    "{const l=browserLanguage(),p=db.profiles[0];Object.assign(p.settings,{lang:l,ui:l,dictionary:l});p.name={ca:'El meu perfil',es:'Mi perfil',eu:'Nire profila',gl:'O meu perfil',en:'My profile',fr:'Mon profil'}[l];}")
+rep("db=C.validateBackup(parsed);revision=","db=starterTexts(C.validateBackup(parsed));revision=")
+rep("pendingImport=C.validateBackup(JSON.parse(await file.text()));","pendingImport=starterTexts(C.validateBackup(JSON.parse(await file.text())));")
+
 open(dst,'w',encoding='utf-8',newline='').write(s)
 print('ok',dst)

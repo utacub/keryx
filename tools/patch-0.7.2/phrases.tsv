@@ -1,0 +1,90 @@
+M01	Bai.	Si.	Yes.	Oui.
+M02	Ez.	Non.	No.	Non.
+M03	Ez dakit.	Non o sei.	I don’t know.	Je ne sais pas.
+M04	Agian.	Quizais.	Maybe.	Peut-être.
+M05	Eskerrik asko.	Grazas.	Thank you.	Merci.
+M06	Ez horregatik.	De nada.	You’re welcome.	De rien.
+M07	Itxaron pixka bat, idazten ari naiz.	Un momento, estou escribindo.	One moment, I’m typing.	Un instant, je suis en train d’écrire.
+M08	Zerbait esan nahi dut.	Quero dicir unha cousa.	I want to say something.	Je veux dire quelque chose.
+M09	Oraindik ez dut amaitu.	Aínda non rematei.	I haven’t finished yet.	Je n’ai pas encore fini.
+M10	Denbora gehiago behar dut.	Necesito máis tempo.	I need more time.	J’ai besoin de plus de temps.
+M11	Amaitu dut.	Xa rematei.	I’ve finished.	J’ai fini.
+M12	Gero jarraitu dezakegu?	Podemos continuar despois?	Can we continue later?	On peut continuer plus tard ?
+M13	Errepika dezakezu?	Podes repetilo?	Can you say that again?	Vous pouvez répéter ?
+M14	Ez nuen hori esan nahi.	Non era iso o que quería dicir.	That’s not what I meant.	Ce n’est pas ce que je voulais dire.
+M15	Ez dut ulertu.	Non o entendín.	I didn’t understand.	Je n’ai pas compris.
+M16	Beste modu batean azal dezakezu?	Podes explicalo doutra maneira?	Can you explain it another way?	Vous pouvez l’expliquer autrement ?
+M17	Botoi okerra sakatu dut.	Equivoqueime de botón.	I pressed the wrong button.	J’ai appuyé sur le mauvais bouton.
+M18	Mezua pantailan erakutsiko dizut.	Mostrareiche a mensaxe na pantalla.	I’ll show you the message on the screen.	Je vais vous montrer le message à l’écran.
+M19	Komunikagailu hau erabiltzen dut hitz egiteko.	Uso este comunicador para falar.	I use this communicator to speak.	J’utilise ce communicateur pour parler.
+M20	Zuzenean hitz egin dezakezu nirekin.	Podes falar directamente comigo.	You can talk to me directly.	Vous pouvez me parler directement.
+M21	Esan nahi dudana idazten dut, eta aplikazioak ozen irakurtzen du.	Escribo o que quero dicir e a aplicación leo.	I type what I want to say and the app reads it aloud.	J’écris ce que je veux dire et l’application le lit à voix haute.
+M22	Ulertzen ez badidazu, galdetu.	Se non me entendes, pregúntamo.	If you don’t understand me, just ask.	Si vous ne me comprenez pas, demandez-moi.
+M23	Nahiago dut amaitu arte itxarotea.	Prefiro que agardes a que remate.	I’d rather you wait until I finish.	Je préfère que vous attendiez que j’aie fini.
+M24	Orain nahiago dut idatziz komunikatu.	Agora prefiro comunicarme por escrito.	Right now I’d rather communicate in writing.	Pour l’instant, je préfère communiquer par écrit.
+M25	Ados nago.	Estou de acordo.	I agree.	Je suis d’accord.
+M26	Ez nago ados.	Non estou de acordo.	I don’t agree.	Je ne suis pas d’accord.
+M27	Nik erabaki nahi dut.	Quero decidilo eu.	I want to decide for myself.	Je veux décider moi-même.
+M28	Ez dut galdera honi erantzun nahi.	Non quero responder a esta pregunta.	I don’t want to answer that question.	Je ne veux pas répondre à cette question.
+M29	Galdetu iezadazu lagundu aurretik.	Pregúntame antes de axudarme.	Ask me before you help me.	Demandez-moi avant de m’aider.
+M30	Pribatuan hitz egin nahi dut.	Quero falar en privado.	I want to talk in private.	Je veux parler en privé.
+M31	Kaixo, zer moduz?	Ola, como estás?	Hello, how are you?	Bonjour, comment ça va ?
+M32	Pozten naiz zu ikusteaz.	Alégrome de verte.	It’s good to see you.	Ça me fait plaisir de vous voir.
+M33	Zer moduz joan zaizu eguna?	Que tal che foi o día?	How was your day?	Comment s’est passée votre journée ?
+M34	Zerbait kontatu nahi dizut.	Quero contarche unha cousa.	I want to tell you something.	Je veux vous raconter quelque chose.
+M35	Txantxa bat zen.	Era unha broma.	It was a joke.	C’était une blague.
+M36	Laster arte.	Vémonos pronto.	See you soon.	À bientôt.
+M37	Atseden hartu behar dut.	Necesito descansar.	I need to rest.	J’ai besoin de me reposer.
+M38	Egarri naiz.	Teño sede.	I’m thirsty.	J’ai soif.
+M39	Gose naiz.	Teño fame.	I’m hungry.	J’ai faim.
+M40	Komunera joan behar dut.	Necesito ir ao baño.	I need to go to the toilet.	J’ai besoin d’aller aux toilettes.
+M41	Hotz naiz.	Teño frío.	I’m cold.	J’ai froid.
+M42	Bero naiz.	Teño calor.	I’m hot.	J’ai chaud.
+M43	Laguntza behar dut.	Necesito axuda.	I need help.	J’ai besoin d’aide.
+M44	Lagundu iezadazu jarrera aldatzen.	Axúdame a cambiar de posición.	Help me change position.	Aidez-moi à changer de position.
+M45	Hurbildu komunikagailua, mesedez.	Achégame o comunicador, por favor.	Please bring my communicator closer.	Rapprochez mon communicateur, s’il vous plaît.
+M46	Ez mugitu gailua oraindik.	Non movas o dispositivo aínda.	Don’t move the device yet.	Ne bougez pas encore l’appareil.
+M47	Horrela ondo dago.	Así está ben.	That’s fine like that.	C’est bien comme ça.
+M48	Gelditu, mesedez.	Para, por favor.	Stop, please.	Arrêtez, s’il vous plaît.
+M49	Min dut, eta non den azaldu nahi dut.	Dóeme e quero explicar onde.	It hurts and I want to explain where.	J’ai mal et je veux expliquer où.
+M50	Ez nago ondo.	Non me atopo ben.	I don’t feel well.	Je ne me sens pas bien.
+M51	Laguntza behar dut orain.	Necesito axuda agora.	I need help now.	J’ai besoin d’aide maintenant.
+M52	Arnasa hartzea kostatzen zait.	Cústame respirar.	I’m finding it hard to breathe.	J’ai du mal à respirer.
+M53	Abisatu nik esaten dizudan pertsonari.	Avisa a persoa que eu che indique.	Let the person I point out know.	Prévenez la personne que je vais vous indiquer.
+M54	Osasun-langile batekin hitz egin behar dut.	Necesito falar cun profesional sanitario.	I need to talk to a health professional.	J’ai besoin de parler à un professionnel de santé.
+M55	Galdera bat daukat.	Teño unha pregunta.	I have a question.	J’ai une question.
+M56	Parte hartu nahi dut.	Quero participar.	I want to take part.	Je veux participer.
+M57	Idatziz bidal diezadakezu?	Podes enviarmo por escrito?	Can you send it to me in writing?	Vous pouvez me l’envoyer par écrit ?
+M58	Atsedenaldi bat behar dut.	Necesito unha pausa.	I need a break.	J’ai besoin d’une pause.
+M59	Beste aukera bat proposatu nahi dut.	Quero propoñer outra opción.	I want to suggest another option.	Je veux proposer une autre option.
+M60	Elkarrekin berrikus dezakegu?	Podemos revisalo xuntos?	Can we go over it together?	On peut le revoir ensemble ?
+M61	Zenbat balio du?	Canto custa?	How much is it?	Combien ça coûte ?
+M62	Txartelarekin ordaindu nahi dut.	Quero pagar con tarxeta.	I’d like to pay by card.	Je voudrais payer par carte.
+M63	Non dago sarrera irisgarria?	Onde está a entrada accesible?	Where is the accessible entrance?	Où est l’entrée accessible ?
+M64	Ibilbide honi buruzko informazioa behar dut.	Necesito información sobre este traxecto.	I need information about this journey.	J’ai besoin d’informations sur ce trajet.
+M65	Helbidea idatz dezakezu?	Podes escribir o enderezo?	Can you write down the address?	Vous pouvez écrire l’adresse ?
+M66	Kontsulta bat egin nahi dut.	Quero facer unha consulta.	I’d like to ask about something.	Je voudrais me renseigner.
+M67	Nahiago dut euskaraz hitz egin.	Prefiro falar en galego.	I’d rather speak English.	Je préfère parler français.
+M68	Nahiago dut gaztelaniaz hitz egin.	Prefiro falar en castelán.	I’d rather speak Spanish.	Je préfère parler espagnol.
+M69	Zarata gehiegi dago hemen.	Aquí hai demasiado ruído.	It’s too noisy here.	Il y a trop de bruit ici.
+M70	Ez da komunikagailuaren ahotsa entzuten.	Non se oe a voz do comunicador.	The communicator’s voice can’t be heard.	On n’entend pas la voix du communicateur.
+M71	Bateria kargatu behar dut.	Necesito cargar a batería.	I need to charge the battery.	J’ai besoin de recharger la batterie.
+M72	Pantaila urrunegi dago.	A pantalla está demasiado lonxe.	The screen is too far away.	L’écran est trop loin.
+M73	Ondo sentitzen naiz.	Síntome ben.	I feel good.	Je me sens bien.
+M74	Beldur naiz.	Teño medo.	I’m scared.	J’ai peur.
+M75	Horrek kezkatzen nau.	Isto preocúpame.	This worries me.	Ça m’inquiète.
+M76	Asko gustatu zait.	Gustoume moito.	I really liked it.	Ça m’a beaucoup plu.
+M77	Ez dut gogorik.	Non me apetece.	I don’t feel like it.	Je n’en ai pas envie.
+M78	Nahiago dut pixka batean isilik egon.	Prefiro estar un anaco en silencio.	I’d rather be quiet for a while.	Je préfère rester un moment en silence.
+M79	Zer egin nahi duzu?	Que che apetece facer?	What do you feel like doing?	Qu’est-ce que vous avez envie de faire ?
+M80	Musika nik aukeratu nahi dut.	Quero escoller a música.	I want to choose the music.	Je veux choisir la musique.
+M81	Zerbait ikusiko dugu elkarrekin?	Vemos algo xuntos?	Shall we watch something together?	On regarde quelque chose ensemble ?
+M82	Pixka batean kalera irten nahi dut.	Quero saír un anaco.	I want to go out for a while.	Je veux sortir un moment.
+M83	Astebururako ideia bat daukat.	Teño unha idea para a fin de semana.	I have an idea for the weekend.	J’ai une idée pour le week-end.
+M84	Gaur nahiago dut beste zerbait egin.	Hoxe prefiro facer outra cousa.	Today I’d rather do something else.	Aujourd’hui, je préfère faire autre chose.
+M85	Hemen nago, erantzuna prestatzen ari naiz.	Estou aquí, estou preparando a resposta.	I’m here, I’m preparing my answer.	Je suis là, je prépare ma réponse.
+M86	Ez itxi elkarrizketa oraindik.	Non peches a conversa aínda.	Don’t end the conversation yet.	Ne fermez pas encore la conversation.
+M87	Segundo batzuk itxaron dezakezu?	Podes agardar uns segundos?	Can you wait a few seconds?	Vous pouvez attendre quelques secondes ?
+M88	Informazioa txatean kopia dezakezu?	Podes copiar a información no chat?	Can you copy the information into the chat?	Vous pouvez copier l’information dans le chat ?
+M89	Nahiago dut mezu bidez jarraitu.	Prefiro continuar por mensaxe.	I’d rather continue by message.	Je préfère continuer par message.
+M90	Komeni zaidanean jarriko naiz berriro harremanetan.	Volverei contactar cando me veña ben.	I’ll get back in touch when it suits me.	Je reprendrai contact quand ça m’arrangera.

@@ -1,14 +1,23 @@
-# UTAC Keryx 0.6.11
+# UTAC Keryx 0.6.12
 
-Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.11_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
+Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. Obriu `UTAC_Keryx_v0.6.12_local.html` amb un navegador. No necessita servidor ni clau d’API. Les descàrregues de veus necessiten Internet la primera vegada.
 
 ## Aplicació web i fitxer local
 
 - Aplicació: https://utacub.github.io/keryx/
-- Edició descarregable: [`UTAC_Keryx_v0.6.11_local.html`](UTAC_Keryx_v0.6.11_local.html).
+- Edició descarregable: [`UTAC_Keryx_v0.6.12_local.html`](UTAC_Keryx_v0.6.12_local.html).
 - La web i l’HTML descarregable contenen la mateixa aplicació. Les dades de cada navegador i origen són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel. `index.html` és autònom; `.nojekyll` evita el processament Jekyll.
 - Per publicar una modificació: executeu `python3 build.py`, les proves indicades més avall i incorporeu els fitxers resultants a `main`. La construcció actualitza `index.html`, l’HTML descarregable i la previsualització `dist/index.html`.
+
+## Canvis de la versió 0.6.12
+
+- **Carpetes a Documents**, com a Frases: la pestanya s’obre al nivell superior, amb carpetes (fins a tres nivells) i documents. Botons Amunt, Editar, Document nou, Nova carpeta i Importar .txt; ruta de carpetes a sota. Els documents nous i els importats van a la carpeta oberta.
+- **Mode d’edició igual que a Frases**: en mode d’edició, tocar una carpeta permet canviar-ne el nom, moure-la o eliminar-la (el contingut passa a la carpeta superior), i tocar un document permet canviar-ne el títol, la carpeta i l’ordre, obrir-lo o eliminar-lo.
+- **Editor de documents en una finestra gran**: el document s’escriu en una finestra que ocupa gairebé tota la pantalla, amb el títol a dalt, el text a l’esquerra i els botons (Parlar, Aturar, Mostrar, Al missatge, Exportar .txt, Eliminar, Tancar) a la dreta. Al mòbil, els botons queden a sota. Es desa sol mentre s’escriu i en tancar.
+- **Les carpetes es veuen com a carpetes**, a Frases i a Documents: la cel·la té forma de carpeta, amb una pestanya a dalt i una vora més gruixuda, i ja no porta la icona de carpeta.
+- **Botons de mida del panell amb icona de lupa** (− i +), just al costat d’«Amagar panell».
+- Les carpetes de documents es desen per perfil a `utac.keryx.docfolders.v1`. `sw.js` passa a `keryx-0.6.12`. Pedaç: `tools/patch-0.6.12/patch0612.py` sobre l’HTML de la 0.6.11.
 
 ## Canvis de la versió 0.6.11
 

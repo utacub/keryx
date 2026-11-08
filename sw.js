@@ -2,12 +2,13 @@
    Keeps the app working without a connection once it has been opened.
    The page is fetched from the network first, so a new version is used as soon as there is a connection;
    without one, the copy saved here is served. Voice downloads and other sites are not touched.
-   0.7.0: the word-prediction dictionaries (lex/<lang>.json) are saved here the first time they are fetched. */
-const VERSION = 'keryx-0.7.1';
+   0.7.0: the word-prediction dictionaries (lex/<lang>.json) are saved here the first time they are fetched.
+   0.7.2: the install step skips the browser's HTTP cache, and each online visit refreshes both saved copies of the page. */
+const VERSION = 'keryx-0.7.2';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-192.png', './icons/maskable-512.png', './icons/apple-touch-icon.png'];
 
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(VERSION).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));
+  event.waitUntil(caches.open(VERSION).then(cache => cache.addAll(CORE.map(u => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', event => {
@@ -24,7 +25,7 @@ self.addEventListener('fetch', event => {
   if (req.mode === 'navigate') {
     event.respondWith(fetch(req).then(res => {
       const isApp = url.pathname.endsWith('/') || url.pathname.endsWith('/index.html');
-      if (res.ok && isApp) { const copy = res.clone(); caches.open(VERSION).then(c => c.put('./index.html', copy)); }
+      if (res.ok && isApp) { const a = res.clone(), b = res.clone(); caches.open(VERSION).then(c => Promise.all([c.put('./index.html', a), c.put('./', b)])); }
       return res;
     }).catch(() => caches.match(req, { ignoreSearch: true }).then(hit => hit || caches.match('./index.html'))));
     return;

@@ -1,4 +1,4 @@
-# UTAC Keryx 0.7.3
+# UTAC Keryx 0.7.4
 
 Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior minimitzable i ajustos amb desplaçament vertical. És una aplicació web instal·lable (PWA): s’obre des de https://utacub.github.io/keryx/ i, un cop oberta, funciona sense connexió. No necessita clau d’API. Les descàrregues de veus i el diccionari de predicció necessiten Internet la primera vegada.
 
@@ -7,6 +7,12 @@ Comunicador alfabètic d’UTAC amb pantalla principal fixa, panell inferior min
 - Aplicació: https://utacub.github.io/keryx/ (instal·lable amb el botó de la part superior dreta).
 - Des de la 0.7.0 ja no hi ha edició d’un sol fitxer HTML: n’hi ha prou amb la instal·lació PWA (Marc, 8 de novembre de 2026). Les dades de cada navegador són independents; per traslladar frases i ajustos, feu servir Ajustos → Dades → Exportar/Importar còpia.
 - Publicació amb GitHub Pages des de la branca `main`, carpeta arrel: `index.html`, `sw.js`, `manifest.webmanifest`, `icons/` i `lex/`. `.nojekyll` evita el processament Jekyll.
+
+## Canvis de la versió 0.7.4
+
+- Quan els botons de gestió del missatge són en una columna (a la dreta o a l’esquerra) i la finestra és tan baixa que un botó quedaria per sota de 44 × 44 px (per exemple, una tauleta apaisada amb el teclat de pantalla obert), la columna s’eixampla, fins a la meitat de l’amplada, i els botons es tornen a repartir en més columnes i menys files. Parlar ocupa 2 × 2 caselles si hi cap, i si no, 2 × 1. 44 px és la mida d’objectiu de la WCAG 2.5.5.
+- Si els botons ja fan 44 px o més, la disposició no canvia. Quan el teclat es tanca, torna la disposició habitual (o la desada a l’editor de botons, amb el mateix ordre).
+- Pedaç aplicat: `tools/patch-0.7.4/patch074.py`.
 
 ## Canvis de la versió 0.7.3
 

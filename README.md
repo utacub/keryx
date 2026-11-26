@@ -293,13 +293,15 @@ Les proves de navegador s’han fet amb Chromium en una previsualització HTTP. 
 
 ## Crèdits i llicències
 
+Copyright © UTAC (Unitat de Tècniques Augmentatives de Comunicació). El codi té la llicència GPL-3.0-or-later (fitxer [`LICENSE`](LICENSE)) i els continguts propis (frases d'exemple, ajuda i manual), la CC BY-NC-SA 4.0 (fitxer [`LICENSE-CONTINGUTS.md`](LICENSE-CONTINGUTS.md)): cal citar «UTAC Keryx, UTAC (Unitat de Tècniques Augmentatives de Comunicació)», no se'n permet l'ús comercial i les adaptacions s'han de compartir amb la mateixa llicència.
+
 Codi d’aquesta versió: GPL-3.0-or-later. El catàleg, la fonemització i l’estructura del worker deriven de LECAA Docs, UTAC, commit `c1f870a65a35573ed66fc597834a7376269b9fae`. Adaptació a Keryx: emmagatzematge transaccional, cancel·lació, selecció de parlant Sharvard, selecció d’idiomes per perfil i integració amb l’editor. Les identitats gràfiques UTAC i Keryx es conserven amb la seva atribució.
 
 - LECAA Docs: https://github.com/utacub/lecaa_docs/tree/c1f870a65a35573ed66fc597834a7376269b9fae
 - Normalització de majúscules i noms de les lletres, consultats el 7 de novembre de 2026: https://github.com/utacub/lecaa_docs/blob/main/src/speech/text.ts (blob `129e5adaafb818cc2e888a419ec267db8b73e6c8`) i https://github.com/utacub/lecaa_docs/blob/main/src/letters.ts (blob `a7323ef5652ef3959f241ade709ad2d89efa75e9`). Es conserva l’atribució GPL a `src/writing.js`; la cua i la integració són pròpies de Keryx.
-- ONNX Runtime Web 1.18.0, Microsoft, MIT: `src/neural/LICENSE-ONNX.txt`.
+- ONNX Runtime Web 1.18.0, Microsoft, MIT: text de la llicència dins de l’HTML.
 - Glue de @diffusionstudio/vits-web 1.0.3 i @diffusionstudio/piper-wasm 1.0.0: MIT, segons les declaracions dels paquets i el codi original. https://github.com/diffusionstudio/vits-web i https://github.com/diffusionstudio/piper-wasm
-- espeak-ng / fonemitzador: GPL-3.0. Llicència GPL completa a `src/neural/LICENSE-LECAA-Docs.txt` i dins de l’HTML.
+- espeak-ng / fonemitzador: GPL-3.0. Llicència GPL completa a `LICENSE` i dins de l’HTML.
 - Ona: UPC Festcat, CC BY-SA 3.0 ES. Davefx: CC0. Sharvard: CC BY 3.0. Maider i Antton: CC BY 4.0. Tugão: CC0. El catàleg conté els enllaços originals de cada model i la interfície els mostra abans de descarregar.
 - DejaVu Sans: llicència inclosa als recursos i a l’HTML.
 
